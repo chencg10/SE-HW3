@@ -23,7 +23,7 @@ public class CreditCard implements Payment
 	//this function is used to add "-" after all 4 digit except the last group of the card number
 	private String addHyphens(String cardNumber)
 	{
-		//we dont use multi therads so we using stringBulider to edit the stirng of card number
+		//we don't use multi threads, so we are using stringBulider to edit the string of card number
 		StringBuilder formattedNumber = new StringBuilder();
 		//iterate over the string of card number
 		for (int i = 0; i < cardNumber.length(); i++)
