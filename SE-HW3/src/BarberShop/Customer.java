@@ -11,7 +11,7 @@ public class Customer
 	private CreditCard _customerCreditCard;
 	private int _gender;
 
-	private Service _currService;
+	//private Service _currService;
 
 	// FEMALE =0 MALE =1 לשאול לגבי זה
 	//what about full name?
@@ -21,8 +21,14 @@ public class Customer
 	//this function is used to check if the name of the customer contain only letters
 	private boolean isValidName(String name)
 	{
+		int comperName=name.compareTo(" ");
+		boolean isSpace = false;
+		if(comperName==0)
+		{
+			isSpace = true;
+		}
 		//return true only if the name contains only letters
-		return name.matches("[a-zA-Z]+");
+		return name.matches("[a-zA-Z\\s]+") && !isSpace;
 	}
 
 	//this function is used to check if the phone number of the customer contain only letters
@@ -118,40 +124,16 @@ public class Customer
 		this._customerCreditCard=new CreditCard(customerCreditCard);
 
 		//if the phone number is legal update the variable of the name
-		if(isValidPhoneNumber(phoneNumber))
-		{
-			this._phoneNumber=phoneNumber;
-		}
+		this.setPhone(phoneNumber);
 
-		// if the phone number is illegal print an error and ask for the use to enter new name
-		else
-		{
-			 System.out.println("Invalid phone number. Please try again.");
-			 Scanner scanner = new Scanner(System.in);
-			while(true)
-			{
-				 System.out.print("Enter the phone number of customer: ");
-				 String input = scanner.nextLine();
-				 if (isValidName(input))
-				 {
-						this._phoneNumber = input;
-						break;
-				 }
-				 else
-				 {
-					 System.out.println("Invalid phone number. Please try again.");
-				 }
-			}
-		}
-		//set gender
-		//check if gender is valid:
+		//set gender - check if gender is valid:
 		if(gender != MALE && gender != FEMALE)
 		{
 
 			Scanner scanner = new Scanner(System.in);
 			while (true)
 			{
-				System.out.println("Wrong gender, please try again");
+				System.out.println("Wrong gender, please try again :");
 				gender = scanner.nextInt();
 				if (gender == MALE || gender == FEMALE)
 				{
@@ -160,6 +142,10 @@ public class Customer
 			}
 		}
 		this._gender = gender;
+
+		//set name:
+		this.setName(name);
+
 	}
 
 	//copy constructor
@@ -171,10 +157,29 @@ public class Customer
 		this._gender = other._gender;
 	}
 
-	public void forAvidan()
+	@Override
+	public String toString()
 	{
-		System.out.println("Avidan is the best in all the world");
+		String strToReturn =  "~~~Customer details~~~" +
+				"\nName: " + this._name +
+				"\nPhone number: " + this._phoneNumber +
+				"\n" + this._customerCreditCard.toString();
+
+		//check the gender:
+		if (this.getGender() == MALE) {
+			strToReturn += "\nGender: Male";
+		} else {
+			strToReturn += "\nGender: Female";
+		}
+
+		return strToReturn + "\n~~~~~~~~~~~~~~~~~~~~~";
 	}
 
-
+//	// test
+//	public static void main(String[] args)
+//	{
+//		Customer chen =
+//				new Customer("avidan", "0502003245", new CreditCard("0545220041417885", "012"), 55);
+//		System.out.println(chen);
+//	}
 }
