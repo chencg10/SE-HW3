@@ -173,7 +173,7 @@ public class Customer
 
 	public void forAvidan()
 	{
-		System.out.println("Avidan is the best");
+		System.out.println("Avidan is the best in all the world");
 	}
 
 
