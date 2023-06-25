@@ -171,5 +171,10 @@ public class Customer
 		this._gender = other._gender;
 	}
 
+	public void forAvidan()
+	{
+		System.out.println("Avidan is the best");
+	}
+
 
 }
