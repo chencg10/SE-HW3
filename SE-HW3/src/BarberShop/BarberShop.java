@@ -117,37 +117,37 @@ public class BarberShop {
 //	}
 //
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// check our code
-		CreditCard cc = new CreditCard("1234567891011121", "123");
-		Service s = new Service("Haircut", 50, 10);
-		Customer c = new Customer("Chen", "0502003245", cc, 1, s);
-		// create barber shop
-		BarberShop bs = new BarberShop();
-		// add customer to barber shop
-		bs.addCustomer(c);
-		Date date = new Date("2023/06/27");
-		// add event to calendar
-		bs.getCalendar().addEvent(new ManEvent(date, 15, c, true));
-
-		// add service to barber shop
-		bs.addService(s);
-		// add another service to barber shop
-		bs.addService(new Service("Beard Trim", 20, 5));
-		// add another service to barber shop
-		bs.addService(new Service("Haircut and Beard Trim", 60, 15));
-
-
-		System.out.println(bs.getCustomersList().get(0).toString());
-		System.out.println(bs.getCustomersList().get(0).getCreditCard().toString());
-
-
-		for (int i = 0; i < bs.getServiceList().size(); i++) {
-			System.out.println(bs.getServiceList().get(i).toString());
-		}
-
-		bs.getCalendar().printAllEvents();
-		System.out.println(bs.getCashRegister().toString());
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		// check our code
+//		CreditCard cc = new CreditCard("1234567891011121", "123");
+//		Service s = new Service("Haircut", 50, 10);
+//		Customer c = new Customer("Chen", "0502003245", cc, 1, s);
+//		// create barber shop
+//		BarberShop bs = new BarberShop();
+//		// add customer to barber shop
+//		bs.addCustomer(c);
+//		Date date = new Date("2023/06/27");
+//		// add event to calendar
+//		bs.getCalendar().addEvent(new ManEvent(date, 15, c, true));
+//
+//		// add service to barber shop
+//		bs.addService(s);
+//		// add another service to barber shop
+//		bs.addService(new Service("Beard Trim", 20, 5));
+//		// add another service to barber shop
+//		bs.addService(new Service("Haircut and Beard Trim", 60, 15));
+//
+//
+//		System.out.println(bs.getCustomersList().get(0).toString());
+//		System.out.println(bs.getCustomersList().get(0).getCreditCard().toString());
+//
+//
+//		for (int i = 0; i < bs.getServiceList().size(); i++) {
+//			System.out.println(bs.getServiceList().get(i).toString());
+//		}
+//
+//		bs.getCalendar().printAllEvents();
+//		System.out.println(bs.getCashRegister().toString());
+//	}
 }
