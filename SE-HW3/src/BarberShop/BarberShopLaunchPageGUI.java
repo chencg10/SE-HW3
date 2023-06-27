@@ -158,11 +158,15 @@ public class BarberShopLaunchPageGUI implements ActionListener {
         //check which button was pressed
         if (this._cashRegisterButton == e.getSource())
         {
+            // close the current window
+            this._frame.dispose();
             // create new cash register gui object
             CashRegisterPageGUI cashRegisterGUI = new CashRegisterPageGUI(this._barberShop);
         }
         else if (this._CustomersMenuButton == e.getSource())
         {
+            // close the current window
+            this._frame.dispose();
             // create new customers menu gui object
             CustomerPageGUI customersMenuGUI = new CustomerPageGUI(this._barberShop);
         }
