@@ -1,8 +1,10 @@
 package BarberShop;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class BarberShopLaunchPageGUI {
+public class BarberShopLaunchPageGUI implements ActionListener {
     //members:
     private BarberShop _barberShop;
     private JFrame _frame;
@@ -67,6 +69,8 @@ public class BarberShopLaunchPageGUI {
         // add buttons to the panel
         this._panel.add(this._cashRegisterButton);
         this._panel.add(this._CustomersMenuButton);
+        this._panel.add(this._ServicesMenuButton);
+        this._panel.add(this._CalendarMenuButton);
 
         this._frame.getContentPane().add(this._panel);
 
@@ -85,21 +89,11 @@ public class BarberShopLaunchPageGUI {
         this._CustomersMenuButton.setBackground(Color.white);
         this._CustomersMenuButton.setOpaque(false);
         this._CustomersMenuButton.setBorderPainted(false);
+        this._CustomersMenuButton.setFocusable(true);
         // set button position
         this._CustomersMenuButton.setBounds(400, 360, 350, 50);
         // set the button's listener
-        this._CustomersMenuButton.addActionListener(e -> {
-            this._frame.getContentPane().removeAll();
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-            this._frame.getContentPane().add(this._panel);
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-
-            //add functionallity
-            System.out.println(this._barberShop.getCustomersList());
-        });
-        this._panel.add(this._CustomersMenuButton);
+        this._CustomersMenuButton.addActionListener(this);
     }
 
     private void setCashRegisterButton() {
@@ -109,21 +103,11 @@ public class BarberShopLaunchPageGUI {
         this._cashRegisterButton.setBackground(Color.white);
         this._cashRegisterButton.setOpaque(false);
         this._cashRegisterButton.setBorderPainted(false);
+        this._cashRegisterButton.setFocusable(true);
         // set button position
         this._cashRegisterButton.setBounds(400, 430, 350, 50);
         // set the button's listener
-        this._cashRegisterButton.addActionListener(e -> {
-            this._frame.getContentPane().removeAll();
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-            this._frame.getContentPane().add(this._panel);
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-
-            //add functionallity
-            System.out.println(this._barberShop.getCashRegister());
-        });
-        this._panel.add(this._cashRegisterButton);
+        this._cashRegisterButton.addActionListener(this);
     }
 
     private void setServicesMenuButton() {
@@ -133,21 +117,11 @@ public class BarberShopLaunchPageGUI {
         this._ServicesMenuButton.setBackground(Color.white);
         this._ServicesMenuButton.setOpaque(false);
         this._ServicesMenuButton.setBorderPainted(false);
+        this._ServicesMenuButton.setFocusable(true);
         // set button position
         this._ServicesMenuButton.setBounds(400, 500, 350, 50);
         // set the button's listener
-        this._ServicesMenuButton.addActionListener(e -> {
-            this._frame.getContentPane().removeAll();
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-            this._frame.getContentPane().add(this._panel);
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-
-            //add functionallity
-            System.out.println(this._barberShop.getServiceList());
-        });
-        this._panel.add(this._ServicesMenuButton);
+        this._ServicesMenuButton.addActionListener(this);
     }
 
 
@@ -158,21 +132,11 @@ public class BarberShopLaunchPageGUI {
         this._CalendarMenuButton.setBackground(Color.white);
         this._CalendarMenuButton.setOpaque(false);
         this._CalendarMenuButton.setBorderPainted(false);
+        this._CalendarMenuButton.setFocusable(true);
         // set button position
         this._CalendarMenuButton.setBounds(400, 570, 350, 50);
         // set the button's listener
-        this._CalendarMenuButton.addActionListener(e -> {
-            this._frame.getContentPane().removeAll();
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-            this._frame.getContentPane().add(this._panel);
-            this._frame.getContentPane().repaint();
-            this._frame.getContentPane().revalidate();
-
-            //add functionallity
-            System.out.println(this._barberShop.getCalendar());
-        });
-        this._panel.add(this._CalendarMenuButton);
+        this._CalendarMenuButton.addActionListener(this);
     }
 
 
@@ -185,9 +149,41 @@ public class BarberShopLaunchPageGUI {
         this._frame.setSize(1000, 667);
         // Set the frame's layout to border layout
         this._frame.setLayout(new BorderLayout());
-
         // Set the frame to be not resizable
         this._frame.setResizable(false);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        //check which button was pressed
+        if (this._cashRegisterButton == e.getSource())
+        {
+            // create new cash register gui object
+            CashRegisterPageGUI cashRegisterGUI = new CashRegisterPageGUI(this._barberShop);
+        }
+        else if (this._CustomersMenuButton == e.getSource())
+        {
+            // create new customers menu gui object
+            CustomerPageGUI customersMenuGUI = new CustomerPageGUI(this._barberShop);
+        }
+        else if (this._ServicesMenuButton == e.getSource())
+        {
+            //TODO: SHOAM - NEED TO IMPLEMENT
+            // create new services menu gui object
+            //ServicePageGUI servicesMenuGUI = new ServicePageGUI(this._barberShop);
+
+            // for checking
+            System.out.println("Services Menu Button Pressed");
+        }
+        else if (this._CalendarMenuButton == e.getSource())
+        {
+            //TODO: HADAS - NEED TO IMPLEMENT
+            // create new calendar menu gui object
+            //CalendarPageGUI calendarMenuGUI = new CalendarPageGUI(this._barberShop);
+
+            // for checking
+            System.out.println("Calendar Menu Button Pressed");
+        }
     }
 
     //main function:
@@ -196,5 +192,4 @@ public class BarberShopLaunchPageGUI {
 
         BarberShopLaunchPageGUI gui = new BarberShopLaunchPageGUI(barberShop);
     }
-
 }
