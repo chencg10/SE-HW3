@@ -1,4 +1,4 @@
-package ex2_Phone;
+package BarberShop;
 
 import java.util.Date; //using the Date library of java
 import java.util.List;
@@ -16,6 +16,11 @@ public class Calander
     	this._diaryevents = new ArrayList<>();
     }
     
+    //get:
+    public List<Event> getCalendar()
+    {
+    	return this._diaryevents;
+    }
     //this function adds a new event to the diary:
     public void addEvent(Event event) 
     {

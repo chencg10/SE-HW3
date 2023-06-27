@@ -1,4 +1,4 @@
-package ex2_Phone;
+package BarberShop;
 
 import java.util.Calendar;
 import java.util.Date; //using the Date library of java

@@ -10,8 +10,7 @@ public class Customer
 	private String _phoneNumber;
 	private CreditCard _customerCreditCard;
 	private int _gender;
-
-	//private Service _currService;
+	private Service _currService;
 
 	// FEMALE =0 MALE =1 לשאול לגבי זה
 	//what about full name?
@@ -55,6 +54,9 @@ public class Customer
 	}
 
 	public int getGender(){return this._gender;}
+
+	//get current service
+	public Service getCurrentService() {return this._currService;}
 
 
 	//sets
@@ -119,7 +121,7 @@ public class Customer
 	}
 
 	//constructor
-	public Customer(String name, String phoneNumber, CreditCard customerCreditCard, int gender)
+	public Customer(String name, String phoneNumber, CreditCard customerCreditCard, int gender, Service service)
 	{
 		this._customerCreditCard=new CreditCard(customerCreditCard);
 
@@ -146,6 +148,9 @@ public class Customer
 		//set name:
 		this.setName(name);
 
+		//set current service:
+		this._currService = new Service(service);
+
 	}
 
 	//copy constructor
@@ -160,7 +165,8 @@ public class Customer
 	@Override
 	public String toString()
 	{
-		String strToReturn =  "~~~Customer details~~~" +
+		String strToReturn =
+				"\n~~~Customer details~~~" +
 				"\nName: " + this._name +
 				"\nPhone number: " + this._phoneNumber +
 				"\n" + this._customerCreditCard.toString();

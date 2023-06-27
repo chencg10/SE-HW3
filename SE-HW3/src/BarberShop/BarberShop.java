@@ -1,6 +1,9 @@
+package BarberShop;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Iterator;
+
 
 //------------------------ Team 8 ------------------------
 //Members:
@@ -13,7 +16,7 @@ import java.util.Iterator;
 public class BarberShop {
 
 	private
-		Calendar _calendar;
+		Calander _calendar;
 		CashRegister _cashRegister;
 		ArrayList <Customer> _customersList;
 		ArrayList <Service> _servicesList;
@@ -21,7 +24,7 @@ public class BarberShop {
 		
 	//Default constructor:
 	public BarberShop() {
-		this._calendar = new Calendar();
+		this._calendar = new Calander();
 		this._cashRegister = new CashRegister();
 		this._customersList = new ArrayList <Customer>();
 		this._servicesList = new ArrayList <Service>();
@@ -32,7 +35,7 @@ public class BarberShop {
 		this._calendar = other.getCalendar();
 		this._cashRegister = other.getCashRegister();
 		this._customersList = other.getCustomersList();
-		this._servicesList =other.getSrvicessList();
+		this._servicesList =other.getServiceList();
 	}
 	
 	//The func add a new service to the Barbershop:
@@ -84,17 +87,16 @@ public class BarberShop {
 		    }
 	}
 	
-	
 	//Setters and Getters:
-	public Calendar getCalendar() {return this._calendar;}
+	public Calander getCalendar() {return this._calendar;}
 	
 	public CashRegister getCashRegister() {return this._cashRegister;}
 	
 	public ArrayList<Customer> getCustomersList() {return this._customersList;}
-	
-	public ArrayList<Service> getSrvicessList() {return this._servicesList;}
 
-	public void setCalendar (Calendar calendar) {this._calendar = calendar;}
+	public ArrayList<Service> getServiceList() {return this._servicesList;}
+
+	public void setCalendar (Calander calendar) {this._calendar = calendar;}
 	
 	public void setCashRegister (CashRegister cashRegister) {this._cashRegister = cashRegister;}
 
@@ -103,21 +105,49 @@ public class BarberShop {
 	public void setServicesList ( ArrayList <Service> servicesList) {this._servicesList = servicesList;}
 	
 	
-    @Override
-	public String toString() {
-		String s = new String();
-		s= "Calendar:" +Calendar.toString() +"CashRegister" +CashRegister.toString();
-		for( int i=0; i<= this._customersList.size(); i++) {
-			this._customersList<Customer>[i] =
-			
-			
-		}
-	}
-	
+//    @Override
+//	public String toString() {
+//		String s = new String();
+//		s= "Calendar:" +Calendar.toString() +"CashRegister" +CashRegister.toString();
+//		for( int i=0; i<= this._customersList.size(); i++) {
+//			this._customersList<Customer>[i] =
+//
+//
+//		}
+//	}
+//
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		// check our code
+		CreditCard cc = new CreditCard("1234567891011121", "123");
+		Service s = new Service("Haircut", 50, 10);
+		Customer c = new Customer("Chen", "0502003245", cc, 1, s);
+		// create barber shop
+		BarberShop bs = new BarberShop();
+		// add customer to barber shop
+		bs.addCustomer(c);
+		Date date = new Date("2023/06/27");
+		// add event to calendar
+		bs.getCalendar().addEvent(new ManEvent(date, 15, c, true));
 
+		// add service to barber shop
+		bs.addService(s);
+		// add another service to barber shop
+		bs.addService(new Service("Beard Trim", 20, 5));
+		// add another service to barber shop
+		bs.addService(new Service("Haircut and Beard Trim", 60, 15));
+
+
+		System.out.println(bs.getCustomersList().get(0).toString());
+		System.out.println(bs.getCustomersList().get(0).getCreditCard().toString());
+
+
+		for (int i = 0; i < bs.getServiceList().size(); i++) {
+			System.out.println(bs.getServiceList().get(i).toString());
+		}
+
+		bs.getCalendar().printAllEvents();
+		System.out.println(bs.getCashRegister().toString());
 	}
-
 }
