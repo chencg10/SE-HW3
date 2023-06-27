@@ -14,42 +14,27 @@ public class BarberShopGUI {
         this._frame = new JFrame("Barber Shop");
         this._frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this._frame.setSize(1000, 667);
-        this._frame.setLayout(null);
+        this._frame.setLayout(new BorderLayout());
+        this._frame.setResizable(false);
 
-        // Create a JPanel as the content pane with a layered layout
-        //JPanel contentPane = new JPanel(new BorderLayout());
-
-        // Create a background image label
+        // Create a background image
         ImageIcon background = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
         JLabel backgroundLabel = new JLabel(background);
-
-        // Create a title label
-        JLabel titleLabel = new JLabel("Barber Shop");
-        titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
-        // Set the foreground color to white
-        titleLabel.setForeground(Color.WHITE);
-        //move the title to the center-top of the screen:
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setVerticalAlignment(JLabel.TOP);
-        titleLabel.setBounds(0, 0, 1000, 100);
-
-
-        // Set the layout manager for the content pane
-        //contentPane.setLayout(new OverlayLayout(contentPane));
-
-        // Add the background and title labels to the content pane
-        //contentPane.add(backgroundLabel);
-        //contentPane.add(titleLabel);
-
-
-        // Set the content pane on the frame
-        //this._frame.setContentPane(contentPane);
-        this._frame.add(backgroundLabel);
-        this._frame.add(titleLabel);
+        backgroundLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
+        this._frame.add(backgroundLabel, BorderLayout.CENTER);
 
         // Create an icon for the frame
         ImageIcon icon = new ImageIcon("src/BarberShop/BarberIcon.jpeg");
         this._frame.setIconImage(icon.getImage());
+
+        // Set the title
+        JLabel titleLabel = new JLabel("Barber Shop");
+        titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
+        titleLabel.setForeground(new Color(150,75,0));
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setVerticalAlignment(JLabel.CENTER);
+        titleLabel.setOpaque(false);
+        this._frame.add(titleLabel, BorderLayout.NORTH);
 
         // Make the frame visible
         this._frame.setVisible(true);
