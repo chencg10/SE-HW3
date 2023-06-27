@@ -10,6 +10,7 @@ public class BarberShopGUI {
 
     //constructor:
     public BarberShopGUI(BarberShop barberShop) {
+
         this._barberShop = barberShop;
         // Create the frame
         this._frame = new JFrame("Barber Shop");
@@ -19,25 +20,41 @@ public class BarberShopGUI {
         this._frame.setSize(1000, 667);
         // Set the frame's layout to border layout
         this._frame.setLayout(new BorderLayout());
+
         // Set the frame to be not resizable
         this._frame.setResizable(false);
 
         // Create a background image
-        ImageIcon background = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
-        // Create a label for the background image
-        JLabel backgroundLabel = new JLabel(background);
-        backgroundLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
-        this._frame.add(backgroundLabel, BorderLayout.CENTER);
+//        ImageIcon background = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
+//        // Create a label for the background image
+//        JLabel backgroundLabel = new JLabel(background);
+//        backgroundLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
+//        this._frame.add(backgroundLabel, BorderLayout.CENTER);
+
+        // Create a JPanel with a custom background color or image
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                 ImageIcon imageIcon = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
+                 Image image = imageIcon.getImage();
+                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        panel.setLayout(new FlowLayout());
 
         // Set the title
         JLabel titleLabel = new JLabel("Barber Shop");
         titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
         // Set the title's color to brown
-        titleLabel.setForeground(new Color(150,75,0));
+        titleLabel.setForeground(Color.white);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setVerticalAlignment(JLabel.CENTER);
         titleLabel.setOpaque(false);
-        this._frame.add(titleLabel, BorderLayout.NORTH);
+        //this._frame.add(titleLabel, BorderLayout.NORTH);
+        panel.add(titleLabel);
+        this._frame.getContentPane().add(panel);
 
         // Make the frame visible
         this._frame.setVisible(true);
