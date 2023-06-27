@@ -2,7 +2,7 @@ package BarberShop;
 import javax.swing.*;
 import java.awt.*;
 
-public class BarberShopGUI {
+public class BarberShopLaunchPageGUI {
     //members:
     private BarberShop _barberShop;
     private JFrame _frame;
@@ -14,7 +14,7 @@ public class BarberShopGUI {
 
 
     //constructor:
-    public BarberShopGUI(BarberShop barberShop) {
+    public BarberShopLaunchPageGUI(BarberShop barberShop) {
 
         this._barberShop = barberShop;
         // Create the frame
@@ -31,25 +31,42 @@ public class BarberShopGUI {
             }
         };
 
-        this._panel.setLayout(new FlowLayout());
+        //this._panel.setLayout(new FlowLayout());
+        this._panel.setLayout(null);
 
         // Create the buttons
         this.setCashRegisterButton();
         this.setCustomersMenuButton();
+        this.setServicesMenuButton();
+        this.setCalendarMenuButton();
 
         // Set the title of the panel
-        JLabel titleLabel = new JLabel("Barber Shop");
-        titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
-        // Set the title's color to brown
-        titleLabel.setForeground(Color.white);
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setVerticalAlignment(JLabel.CENTER);
+        JLabel titleLabel = new JLabel("Barber's Shop");
+        // Set small title
+        JLabel smallTitleLabel = new JLabel("By: Chen, Avidan, Shoam & Hadas");
+
+        // Set the title's font
+        titleLabel.setFont(new Font("Brush Script", Font.BOLD, 70));
+        smallTitleLabel.setFont(new Font("Brush Script", Font.BOLD, 30));
+
+        // Set the title's color
+        titleLabel.setForeground(new Color(255, 255, 255));
+        smallTitleLabel.setForeground(new Color(255, 255, 255));
+
+        // Set the title's position
+        titleLabel.setBounds(295, 0, 500, 100);
+        smallTitleLabel.setBounds(280, 55, 600, 100);
+
+        // Set the title's background
         titleLabel.setOpaque(false);
-        //this._frame.add(titleLabel, BorderLayout.NORTH);
+        smallTitleLabel.setOpaque(false);
+
+        // Add the title to the panel
         this._panel.add(titleLabel);
+        this._panel.add(smallTitleLabel);
         // add buttons to the panel
-        this._panel.add(this._cashRegisterButton, BorderLayout.EAST);
-        this._panel.add(this._CustomersMenuButton, BorderLayout.EAST);
+        this._panel.add(this._cashRegisterButton);
+        this._panel.add(this._CustomersMenuButton);
 
         this._frame.getContentPane().add(this._panel);
 
@@ -57,15 +74,19 @@ public class BarberShopGUI {
         this._frame.setVisible(true);
     }
 
+
+    // Button functions
     private void setCustomersMenuButton() {
+        // create the button
         this._CustomersMenuButton = new JButton("Customers Menu");
-        this._CustomersMenuButton.setFont(new Font("MV Boli", Font.PLAIN, 16));
+        // set button font
+        this._CustomersMenuButton.setFont(new Font("MV Boli", Font.BOLD, 30));
         this._CustomersMenuButton.setForeground(Color.white);
         this._CustomersMenuButton.setBackground(Color.white);
         this._CustomersMenuButton.setOpaque(false);
         this._CustomersMenuButton.setBorderPainted(false);
         // set button position
-        this._CustomersMenuButton.setBounds(0, 0, 50, 25);
+        this._CustomersMenuButton.setBounds(400, 360, 350, 50);
         // set the button's listener
         this._CustomersMenuButton.addActionListener(e -> {
             this._frame.getContentPane().removeAll();
@@ -83,13 +104,13 @@ public class BarberShopGUI {
 
     private void setCashRegisterButton() {
         this._cashRegisterButton = new JButton("Cash Register");
-        this._cashRegisterButton.setFont(new Font("MV Boli", Font.PLAIN, 16));
+        this._cashRegisterButton.setFont(new Font("MV Boli", Font.BOLD, 30));
         this._cashRegisterButton.setForeground(Color.white);
         this._cashRegisterButton.setBackground(Color.white);
         this._cashRegisterButton.setOpaque(false);
         this._cashRegisterButton.setBorderPainted(false);
         // set button position
-        this._cashRegisterButton.setBounds(0, 25, 50, 25);
+        this._cashRegisterButton.setBounds(400, 430, 350, 50);
         // set the button's listener
         this._cashRegisterButton.addActionListener(e -> {
             this._frame.getContentPane().removeAll();
@@ -103,6 +124,55 @@ public class BarberShopGUI {
             System.out.println(this._barberShop.getCashRegister());
         });
         this._panel.add(this._cashRegisterButton);
+    }
+
+    private void setServicesMenuButton() {
+        this._ServicesMenuButton = new JButton("Services Menu");
+        this._ServicesMenuButton.setFont(new Font("MV Boli", Font.BOLD, 30));
+        this._ServicesMenuButton.setForeground(Color.white);
+        this._ServicesMenuButton.setBackground(Color.white);
+        this._ServicesMenuButton.setOpaque(false);
+        this._ServicesMenuButton.setBorderPainted(false);
+        // set button position
+        this._ServicesMenuButton.setBounds(400, 500, 350, 50);
+        // set the button's listener
+        this._ServicesMenuButton.addActionListener(e -> {
+            this._frame.getContentPane().removeAll();
+            this._frame.getContentPane().repaint();
+            this._frame.getContentPane().revalidate();
+            this._frame.getContentPane().add(this._panel);
+            this._frame.getContentPane().repaint();
+            this._frame.getContentPane().revalidate();
+
+            //add functionallity
+            System.out.println(this._barberShop.getServiceList());
+        });
+        this._panel.add(this._ServicesMenuButton);
+    }
+
+
+    private void setCalendarMenuButton() {
+        this._CalendarMenuButton = new JButton("Calendar Menu");
+        this._CalendarMenuButton.setFont(new Font("MV Boli", Font.BOLD, 30));
+        this._CalendarMenuButton.setForeground(Color.white);
+        this._CalendarMenuButton.setBackground(Color.white);
+        this._CalendarMenuButton.setOpaque(false);
+        this._CalendarMenuButton.setBorderPainted(false);
+        // set button position
+        this._CalendarMenuButton.setBounds(400, 570, 350, 50);
+        // set the button's listener
+        this._CalendarMenuButton.addActionListener(e -> {
+            this._frame.getContentPane().removeAll();
+            this._frame.getContentPane().repaint();
+            this._frame.getContentPane().revalidate();
+            this._frame.getContentPane().add(this._panel);
+            this._frame.getContentPane().repaint();
+            this._frame.getContentPane().revalidate();
+
+            //add functionallity
+            System.out.println(this._barberShop.getCalendar());
+        });
+        this._panel.add(this._CalendarMenuButton);
     }
 
 
@@ -124,7 +194,7 @@ public class BarberShopGUI {
     public static void main(String[] args) {
         BarberShop barberShop = new BarberShop();
 
-        BarberShopGUI gui = new BarberShopGUI(barberShop);
+        BarberShopLaunchPageGUI gui = new BarberShopLaunchPageGUI(barberShop);
     }
 
 }
