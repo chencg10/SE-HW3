@@ -77,68 +77,7 @@ public class BarberShopLaunchPageGUI implements ActionListener {
         // Make the frame visible
         this._frame.setVisible(true);
     }
-
-
-    // constructor for back button
-public BarberShopLaunchPageGUI() {
-        this.setFrame();
-        // Create a JPanel with a custom background color or image
-        this._panel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                 ImageIcon imageIcon = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
-                 Image image = imageIcon.getImage();
-                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
-
-        //this._panel.setLayout(new FlowLayout());
-        this._panel.setLayout(null);
-
-        // Create the buttons
-        this.setCashRegisterButton();
-        this.setCustomersMenuButton();
-        this.setServicesMenuButton();
-        this.setCalendarMenuButton();
-
-        // Set the title of the panel
-        JLabel titleLabel = new JLabel("Barber's Shop");
-        // Set small title
-        JLabel smallTitleLabel = new JLabel("By: Chen, Avidan, Shoam & Hadas");
-
-        // Set the title's font
-        titleLabel.setFont(new Font("Brush Script", Font.BOLD, 70));
-        smallTitleLabel.setFont(new Font("Brush Script", Font.BOLD, 30));
-
-        // Set the title's color
-        titleLabel.setForeground(new Color(255, 255, 255));
-        smallTitleLabel.setForeground(new Color(255, 255, 255));
-
-        // Set the title's position
-        titleLabel.setBounds(295, 0, 500, 100);
-        smallTitleLabel.setBounds(280, 55, 600, 100);
-
-        // Set the title's background
-        titleLabel.setOpaque(false);
-        smallTitleLabel.setOpaque(false);
-
-        // Add the title to the panel
-        this._panel.add(titleLabel);
-        this._panel.add(smallTitleLabel);
-        // add buttons to the panel
-        this._panel.add(this._cashRegisterButton);
-        this._panel.add(this._CustomersMenuButton);
-        this._panel.add(this._ServicesMenuButton);
-        this._panel.add(this._CalendarMenuButton);
-
-        this._frame.getContentPane().add(this._panel);
-
-        // Make the frame visible
-        this._frame.setVisible(true);
-    }
-
-
+    
     // Button functions
     private void setCustomersMenuButton() {
         // create the button
