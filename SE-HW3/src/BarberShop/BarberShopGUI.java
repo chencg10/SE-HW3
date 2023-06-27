@@ -44,7 +44,7 @@ public class BarberShopGUI {
 
         panel.setLayout(new FlowLayout());
 
-        // Set the title
+        // Set the title of the panel
         JLabel titleLabel = new JLabel("Barber Shop");
         titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
         // Set the title's color to brown
