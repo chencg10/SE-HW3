@@ -11,25 +11,28 @@ public class BarberShopGUI {
     //constructor:
     public BarberShopGUI(BarberShop barberShop) {
         this._barberShop = barberShop;
+        // Create the frame
         this._frame = new JFrame("Barber Shop");
+        // Set the frame's default close operation to exit on close
         this._frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Set the frame's size to 1000x667
         this._frame.setSize(1000, 667);
+        // Set the frame's layout to border layout
         this._frame.setLayout(new BorderLayout());
+        // Set the frame to be not resizable
         this._frame.setResizable(false);
 
         // Create a background image
         ImageIcon background = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
+        // Create a label for the background image
         JLabel backgroundLabel = new JLabel(background);
         backgroundLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
         this._frame.add(backgroundLabel, BorderLayout.CENTER);
 
-        // Create an icon for the frame
-        ImageIcon icon = new ImageIcon("src/BarberShop/BarberIcon.jpeg");
-        this._frame.setIconImage(icon.getImage());
-
         // Set the title
         JLabel titleLabel = new JLabel("Barber Shop");
         titleLabel.setFont(new Font("MV Boli", Font.PLAIN, 30));
+        // Set the title's color to brown
         titleLabel.setForeground(new Color(150,75,0));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setVerticalAlignment(JLabel.CENTER);
