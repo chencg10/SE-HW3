@@ -64,7 +64,7 @@ public class BarberShop {
 	}
 	
 	//The func add new customer to the customer List:	
-	void addCustomer(Customer customer) {
+	public void addCustomer(Customer customer) {
 		this._customersList.add(customer);
 	
 	}
@@ -103,8 +103,26 @@ public class BarberShop {
 	public void setCustomersList ( ArrayList <Customer> customersList) {this._customersList = customersList;}
 	
 	public void setServicesList ( ArrayList <Service> servicesList) {this._servicesList = servicesList;}
-	
-	
+
+	public boolean isCustomerExists(String name) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getName().equalsIgnoreCase(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Customer getCustomerByName(String name) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getName().equalsIgnoreCase(name)) {
+				return this._customersList.get(i);
+			}
+		}
+		return null;
+	}
+
+
 //    @Override
 //	public String toString() {
 //		String s = new String();

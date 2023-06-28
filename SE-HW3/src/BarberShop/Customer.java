@@ -93,9 +93,8 @@ public class Customer
 	public void setPhone(String phoneNumber)
 	{
 		//if the phone number is legal update the variable of the name
-			if(isValidPhoneNumber(phoneNumber))
-			{
-				this._phoneNumber=phoneNumber;
+			if(isValidPhoneNumber(phoneNumber)) {
+				this._phoneNumber = phoneNumber;
 			}
 
 			// if the phone number is illegal print an error and ask for the use to enter new name
@@ -150,7 +149,36 @@ public class Customer
 
 		//set current service:
 		this._currService = new Service(service);
+	}
 
+
+	//constructor without service
+	public Customer(String name, String phoneNumber, CreditCard customerCreditCard, int gender)
+	{
+		this._customerCreditCard=new CreditCard(customerCreditCard);
+
+		//if the phone number is legal update the variable of the name
+		this.setPhone(phoneNumber);
+
+		//set gender - check if gender is valid:
+		if(gender != MALE && gender != FEMALE)
+		{
+
+			Scanner scanner = new Scanner(System.in);
+			while (true)
+			{
+				System.out.println("Wrong gender, please try again :");
+				gender = scanner.nextInt();
+				if (gender == MALE || gender == FEMALE)
+				{
+					break;
+				}
+			}
+		}
+		this._gender = gender;
+
+		//set name:
+		this.setName(name);
 	}
 
 	//copy constructor

@@ -33,7 +33,6 @@ public class BarberShopHomePageGUI implements ActionListener {
             }
         };
 
-        //this._panel.setLayout(new FlowLayout());
         this._panel.setLayout(null);
 
         // Create the buttons
