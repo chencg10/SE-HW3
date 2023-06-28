@@ -1,8 +1,11 @@
 package BarberShop;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Iterator;
+
 
 
 //------------------------ Team 8 ------------------------
@@ -28,8 +31,37 @@ public class BarberShop {
 		this._cashRegister = new CashRegister();
 		this._customersList = new ArrayList <Customer>();
 		this._servicesList = new ArrayList <Service>();
+		// load services from file
+		this.loadServices();
 	}
-	
+
+	private void loadServices() {
+		// Load services from file separated by ',' and add them to the services list
+		try {
+			File file = new File("servicsDateBase.txt");
+
+			Scanner scanner = new Scanner(file);
+
+			while (scanner.hasNextLine()) {
+				String row = scanner.nextLine();
+				String[] values = row.split(",");
+				// add service to the list
+				Service service = new Service(value);
+				this._servicesList.add(service);
+				}
+			}
+
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// Process the rows as needed
+		for (String row : rows) {
+			System.out.println(row);
+		}
+	}
+
 	//Copy Constructor:
 	public BarberShop(BarberShop other) {
 		this._calendar = other.getCalendar();
