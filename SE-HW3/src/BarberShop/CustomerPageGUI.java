@@ -92,7 +92,7 @@ public class CustomerPageGUI implements ActionListener {
         if (e.getSource() == this._backButton)
         {
             this._frame.dispose();
-            new BarberShopLaunchPageGUI(this._barberShop);
+            new BarberShopHomePageGUI(this._barberShop);
         }
     }
 }

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BarberShopLaunchPageGUI implements ActionListener {
+public class BarberShopHomePageGUI implements ActionListener {
     //members:
     private BarberShop _barberShop;
     private JFrame _frame;
@@ -16,7 +16,7 @@ public class BarberShopLaunchPageGUI implements ActionListener {
 
 
     //constructor:
-    public BarberShopLaunchPageGUI(BarberShop barberShop) {
+    public BarberShopHomePageGUI(BarberShop barberShop) {
 
         this._barberShop = barberShop;
         // Create the frame
@@ -77,7 +77,7 @@ public class BarberShopLaunchPageGUI implements ActionListener {
         // Make the frame visible
         this._frame.setVisible(true);
     }
-    
+
     // Button functions
     private void setCustomersMenuButton() {
         // create the button
@@ -193,6 +193,6 @@ public class BarberShopLaunchPageGUI implements ActionListener {
     public static void main(String[] args) {
         BarberShop barberShop = new BarberShop();
 
-        BarberShopLaunchPageGUI gui = new BarberShopLaunchPageGUI(barberShop);
+        BarberShopHomePageGUI gui = new BarberShopHomePageGUI(barberShop);
     }
 }
