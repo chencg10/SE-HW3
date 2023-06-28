@@ -38,27 +38,24 @@ public class BarberShop {
 	private void loadServices() {
 		// Load services from file separated by ',' and add them to the services list
 		try {
+			// Read the file
 			File file = new File("servicsDateBase.txt");
 
 			Scanner scanner = new Scanner(file);
-
+			// iterate over the lines in the file
 			while (scanner.hasNextLine()) {
 				String row = scanner.nextLine();
 				String[] values = row.split(",");
-				// add service to the list
-				Service service = new Service(value);
-				this._servicesList.add(service);
-				}
+				//add service to the list
+				this._servicesList.add(
+						new Service(values[0], Integer.parseInt(values[1]), Integer.parseInt(values[2]))
+				);
 			}
-
 			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
-
-		// Process the rows as needed
-		for (String row : rows) {
-			System.out.println(row);
+		// Catch exception if file not found
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -1,4 +1,4 @@
-
+package BarberShop;
 
 public class CashRegister {
 
