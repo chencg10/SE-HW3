@@ -1,9 +1,10 @@
-package BarberShop;
+
 
 public class CashRegister {
 
     private int _totalBalance = 0;
     private int _totalExpenses = 0;
+    private int _netProfit=0;
 
 
     // Constructor
@@ -20,6 +21,24 @@ public class CashRegister {
     //get the current total expenses of the barber shop
     public int getTotalExpenses() {
         return _totalExpenses;
+    }
+    
+    public String getTotalNetProfit()
+    {
+    	//calculate the net profit
+    	this._netProfit=this._totalBalance-this._totalExpenses;
+    	
+    	//check if we are in minus
+    	if(this._netProfit<0)
+    	{
+    		return "Be careful you are in the minus of : " +String.valueOf(_netProfit);
+    	}
+    	
+    	else
+    	{
+    		return "Your net profit is : " +String.valueOf(_netProfit);
+    	}
+    	
     }
 
 
@@ -61,6 +80,7 @@ public class CashRegister {
         System.out.println("Thanks " + customer.getName() + "and see you again soon!");
     }
 
+    
 
 
 
