@@ -39,12 +39,13 @@ public class BarberShop {
 		// Load services from file separated by ',' and add them to the services list
 		try {
 			// Read the file
-			File file = new File("servicsDateBase.txt");
+			File file = new File("src/BarberShop/servicsDateBase.txt");
 
 			Scanner scanner = new Scanner(file);
 			// iterate over the lines in the file
 			while (scanner.hasNextLine()) {
 				String row = scanner.nextLine();
+
 				String[] values = row.split(",");
 				//add service to the list
 				this._servicesList.add(

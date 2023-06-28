@@ -278,6 +278,9 @@ public class CustomerPageGUI implements ActionListener {
                 }
             }
 
+            // now ask the costumer for the service he wants
+
+
             // now, add the customer to the barber shop
             // First, create credit card object
             CreditCard creditCard = new CreditCard(creditCardNumber, creditCardCVV);
