@@ -58,6 +58,9 @@ public class Customer
 	//get current service
 	public Service getCurrentService() {return this._currService;}
 
+	//get customer
+	public Customer getCustomer() {return this;}
+
 
 	//sets
 	public void setName(String name)
@@ -117,6 +120,14 @@ public class Customer
 					 }
 				}
 			}
+	}
+
+	public void set_currService(Service service)
+	{
+		if (service != null)
+			this._currService = new Service(service);
+		else
+			this._currService = null;
 	}
 
 	//constructor

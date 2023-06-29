@@ -40,6 +40,15 @@ public class CreditCard implements Payment
 		return formattedNumber.toString();
 	}
 
+	//getters
+	public String getCardNumber() {return _cardNumber;}
+	public String getCvv() {return _cvv;}
+
+	//setters
+	public void setCardNumber(String cardNumber) {this._cardNumber = cardNumber;}
+	public void setCvv(String cvv) {this._cvv = cvv;}
+
+
 	//this function is return a string that reprsent to the costumer how much he need to pay and from which card he paid
 	public String amountToPay(int totalPayment)
 	{

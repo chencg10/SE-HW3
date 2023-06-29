@@ -172,6 +172,42 @@ public class BarberShop {
 		return null;
 	}
 
+	public Customer getCustomerByPhoneNum(String newPhoneNumber) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getPhoneNumber().equals(newPhoneNumber)) {
+				return this._customersList.get(i);
+			}
+		}
+		return null;
+	}
+
+	public Customer getCustomerByCreditCard(String creditCardNumber) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getCreditCard().getCardNumber().equals(creditCardNumber)) {
+				return this._customersList.get(i);
+			}
+		}
+		return null;
+	}
+
+	public Customer getCustomerByService(Service service) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getCurrentService().getServiceName().equals(service)) {
+				return this._customersList.get(i);
+			}
+		}
+		return null;
+	}
+
+	public Customer getCustomerByCVV(String creditCardNumber) {
+		for (int i = 0; i < this._customersList.size(); i++) {
+			if (this._customersList.get(i).getCreditCard().getCvv().equals(creditCardNumber)) {
+				return this._customersList.get(i);
+			}
+		}
+		return null;
+	}
+
 
 //    @Override
 //	public String toString() {
