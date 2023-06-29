@@ -127,6 +127,15 @@ public class BarberShop {
 		}
 		return null;
 	}
+
+	// retrun list of services names:
+	public String[] getServicesNames() {
+		String[] servicesNames = new String[this._servicesList.size()];
+		for (int i = 0; i < this._servicesList.size(); i++) {
+			servicesNames[i] = this._servicesList.get(i).getServiceName();
+		}
+		return servicesNames;
+	}
 	
 	//Setters and Getters:
 	public Calander getCalendar() {return this._calendar;}

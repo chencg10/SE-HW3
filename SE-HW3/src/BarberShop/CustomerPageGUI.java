@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerPageGUI implements ActionListener {
@@ -278,13 +279,59 @@ public class CustomerPageGUI implements ActionListener {
                 }
             }
 
-            // now ask the costumer for the service he wants
+            // Declare instance variables
+            JList<String> ServicesList;
 
+            // Retrieve the list of services names from the barber shop
+            String[] servicesNames = this._barberShop.getServicesNames();
+            // append a string to the end of each service name
+            // Create a new array with a larger size
+            String[] servicesNamesWithNone = new String[servicesNames.length + 1];
 
-            // now, add the customer to the barber shop
-            // First, create credit card object
-            CreditCard creditCard = new CreditCard(creditCardNumber, creditCardCVV);
-            this._barberShop.addCustomer(new Customer(name, phoneNumber, creditCard, gender));
+            // Copy elements from the original array to the new array
+            System.arraycopy(servicesNames, 0, servicesNamesWithNone, 0, servicesNames.length);
+
+            // Append the new string to the end of the new array
+            servicesNamesWithNone[servicesNamesWithNone.length - 1] = "None";
+
+            // Create a JList with the array of strings as the data
+            ServicesList = new JList<>(servicesNamesWithNone);
+
+            // Create a JScrollPane and add the JList to it
+            JScrollPane scrollPane = new JScrollPane(ServicesList);
+            scrollPane.setPreferredSize(new Dimension(250, 300));
+
+            // Show the JOptionPane with the JScrollPane as the message and get the user's choice
+            int choice = JOptionPane.showOptionDialog(this._frame, scrollPane,
+                    "Choose the services for the customer:",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    null);
+
+            // get the user's choice
+            String selectedService = ServicesList.getSelectedValue();
+
+            // Check the user's choice
+            // if the user chose "None", do nothing
+            if (selectedService.equals("None"))
+            {
+                CreditCard creditCard = new CreditCard(creditCardNumber, creditCardCVV);
+                this._barberShop.addCustomer(new Customer(name, phoneNumber, creditCard, gender));
+            }
+            // else, add the services to the customer
+            else {
+                // search for the service in the barber shop services list
+                Service service = this._barberShop.getServiceByName(servicesNamesWithNone[choice]);
+                // create a new customer with the services
+                CreditCard creditCard = new CreditCard(creditCardNumber, creditCardCVV);
+                this._barberShop.addCustomer(new Customer(name, phoneNumber, creditCard, gender, service));
+            }
+
+            // Notify the user that the customer was added successfully
+            JOptionPane.showMessageDialog(this._frame, "Customer was added successfully.",
+                    "Add Customer", JOptionPane.INFORMATION_MESSAGE);
            // check
             System.out.println(this._barberShop.getCustomersList());
         }
@@ -313,8 +360,5 @@ public class CustomerPageGUI implements ActionListener {
             // check
             System.out.println(this._barberShop.getCustomersList());
         }
-
-
-
     }
 }
