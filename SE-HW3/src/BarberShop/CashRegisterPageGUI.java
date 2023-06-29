@@ -1,4 +1,4 @@
-package BarberShop;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,7 +29,7 @@ public class CashRegisterPageGUI implements ActionListener {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				ImageIcon imageIcon = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
+				ImageIcon imageIcon = new ImageIcon("src/BarberBackround.jpeg");
 				Image image = imageIcon.getImage();
 				g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 			}
@@ -194,10 +194,49 @@ public class CashRegisterPageGUI implements ActionListener {
 
 		}
 
-//        else if(e.getSource()==this._addPaymentButton)
-//        {
-//        	
-//        }
+       else if(e.getSource()==this._addPaymentButton)
+		{
+        	//get the customer's name
+    	   String CustomerName=JOptionPane.showInputDialog(this._frame, "Please enter the name of the customer", "Customer name", JOptionPane.PLAIN_MESSAGE);
+    	   //check if the customer name is exsit
+    	   Customer currCustomer=this._barberShop.getCustomerByName(CustomerName);
+    	   //customer doesn't exsit
+    	   if(currCustomer==null)
+    	   {
+    		   JOptionPane.showMessageDialog(this._frame, "Sorry,the customer name doesn't exsit", "error-customer doesn't found",
+   					JOptionPane.ERROR_MESSAGE);
+    		   return;
+    	   }
+    	   else
+    	   {
+    		   //check if the customer has a service
+    		   Service currService=currCustomer.getCurrentService();
+    		   if(currService==null)
+    		   {
+    			   JOptionPane.showMessageDialog(this._frame, "Sorry,the customer  donest has a service", "error-customer doesn't has service",
+    	   					JOptionPane.ERROR_MESSAGE);
+    			   return;
+    		   }
+    		   else
+    		   {
+    			   this._barberShop._cashRegister.addPayment(currCustomer);
+    			   //get the price of the current service
+    			   int paymentAmount=currService.getServicePrice();
+    			   
+    			   // notify the user of the cash register that a payment has been made successfully
+    			   JOptionPane.showMessageDialog(this._frame, "Payment of " + paymentAmount + " has been made successfully by "+currCustomer.getName(), "successfully payment",
+      	   					JOptionPane.INFORMATION_MESSAGE);
+    		       
+    		        // thank to the customer for the payment
+    		        JOptionPane.showMessageDialog(this._frame, "Thank you for your payment  " + currCustomer.getName() + " and see you again soon!", "thank you!",
+      	   					JOptionPane.INFORMATION_MESSAGE);
+    		        
+    		        //after the payment put null in the current service
+    		       this._barberShop.getCustomerByName(CustomerName).set_currService(null);
+    		   }
+    	   }
+    	   
+        }
 
 		else if (e.getSource() == this._incomeButton) {
 			// get the incomes and save it in string
@@ -208,12 +247,107 @@ public class CashRegisterPageGUI implements ActionListener {
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
-		/*
-		 * else if(e.getSource()==this._netProfitButton) {
-		 * 
-		 * }
-		 * 
-		 */
+		
+		  else if(e.getSource()==this._netProfitButton) {
+		  
+			  //get the net profit
+			  int netProfit=this._barberShop.getCashRegister().getTotalNetProfit();
+			//check if we are in minus
+		    	if(netProfit<0)
+		    	{
+		    		 //show warnig message since the net profit is negative
+		    		JOptionPane.showMessageDialog(this._frame, "Be careful you are in  minus of : " +String.valueOf(netProfit), "net Profit", JOptionPane.WARNING_MESSAGE);
+		    	}
+		    	
+		    	else
+		    	{
+		    		//show the net profit
+		    		JOptionPane.showMessageDialog(this._frame, "Your net profit is : " +String.valueOf(netProfit), "net Profit", JOptionPane.INFORMATION_MESSAGE);
+		    	}
+			  
+		  }
+		
+		  else if (e.getSource()==this._refoundCustomerButton)
+		  {
+			//get the customer's name
+	    	   String CustomerName=JOptionPane.showInputDialog(this._frame, "Please enter the name of the customer", "Customer name", JOptionPane.PLAIN_MESSAGE);
+	    	   //check if the customer name is exsit
+	    	   Customer currCustomer=this._barberShop.getCustomerByName(CustomerName);
+	    	   //customer doesn't exsit
+	    	   if(currCustomer==null)
+	    	   {
+	    		   JOptionPane.showMessageDialog(this._frame, "Sorry,the customer name doesn't exsit", "error-customer doesn't found",
+	   					JOptionPane.ERROR_MESSAGE);
+	    		   return;
+	    	   }
+	    	   else
+	    	   {
+	    		   //ask from the user to choice the treatment for refound
+	    		   JOptionPane.showMessageDialog(this._frame, "Please choose a treatment for refound","refound", JOptionPane.INFORMATION_MESSAGE);
+
+	               // Declare instance variables
+	               JList<String> ServicesList;
+
+	               // Retrieve the list of services names from the barber shop
+	               String[] servicesNames = this._barberShop.getServicesNames();
+	               // append a string to the end of each service name
+	               // Create a new array with a larger size
+	               String[] servicesNamesWithNone = new String[servicesNames.length + 1];
+
+	               // Copy elements from the original array to the new array
+	               System.arraycopy(servicesNames, 0, servicesNamesWithNone, 0, servicesNames.length);
+
+	               // Append the new string to the end of the new array
+	               servicesNamesWithNone[servicesNamesWithNone.length - 1] = "Cancel";
+
+	               // Create a JList with the array of strings as the data
+	               ServicesList = new JList<>(servicesNamesWithNone);
+
+	               // Create a JScrollPane and add the JList to it
+	               JScrollPane scrollPane = new JScrollPane(ServicesList);
+	               scrollPane.setPreferredSize(new Dimension(250, 300));
+
+	               // Show the JOptionPane with the JScrollPane as the message and get the user's choice
+	               int choice = JOptionPane.showOptionDialog(this._frame, scrollPane,
+	                       "Choose the services for the customer:",
+	                       JOptionPane.DEFAULT_OPTION,
+	                       JOptionPane.PLAIN_MESSAGE,
+	                       null,
+	                       null,
+	                       null);
+
+	               // get the user's choice
+	               String selectedService = ServicesList.getSelectedValue();
+	               
+	               if(selectedService.equals("Cancel"))
+	               {
+	            	   return;
+	               }
+	               
+	               else 
+	               {
+	            	   //refound the customer by his choice
+	            	   Service currentRefound=this._barberShop.getServiceByName(selectedService);
+	            	   this._barberShop.getCashRegister().RefoundCustomer(currentRefound);
+	                   
+	            	   //get the price of the Refound service
+	    			   int paymentAmount=currentRefound.getServicePrice();
+
+	    			   //tell to the customer that the refound successfully executed
+	    			   JOptionPane.showMessageDialog(this._frame, "Refound of " + paymentAmount + " has been made successfully for " +currCustomer,"refound successfully executed", JOptionPane.INFORMATION_MESSAGE);
+	                   
+	                   // thank the customer 
+	    			   JOptionPane.showMessageDialog(this._frame,"Thanks " + currCustomer.getName() + " and see you again soon!","thank you", JOptionPane.INFORMATION_MESSAGE);
+	             
+	               }
+	               
+	               
+	    		   
+	    		   
+	    	   }
+		  }
+		  
+		
 
 	}
 

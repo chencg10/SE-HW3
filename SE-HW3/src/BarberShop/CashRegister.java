@@ -1,4 +1,4 @@
-package BarberShop;
+
 
 public class CashRegister {
 
@@ -23,21 +23,13 @@ public class CashRegister {
         return _totalExpenses;
     }
     
-    public String getTotalNetProfit()
+    public int getTotalNetProfit()
     {
     	//calculate the net profit
     	this._netProfit=this._totalBalance-this._totalExpenses;
     	
-    	//check if we are in minus
-    	if(this._netProfit<0)
-    	{
-    		return "Be careful you are in the minus of : " +String.valueOf(_netProfit);
-    	}
+    	return this._netProfit;
     	
-    	else
-    	{
-    		return "Your net profit is : " +String.valueOf(_netProfit);
-    	}
     	
     }
 
@@ -55,29 +47,23 @@ public class CashRegister {
         // update the total expenses of the cash register
          _totalExpenses += expenses;
 
-        // notify the user of the cash register that a payment has been made successfully
-        System.out.println("Payment of " + paymentAmount + " has been made successfully by " + customer.getName());
-        // thank the customer for the payment
-        System.out.println("Thank you for your payment " + customer.getName() + "and see you again soon!");
+       
     }
 
-    public void RefoundCustomer(Customer customer) {
+    public void RefoundCustomer(Service currentService) {
         //find the payment amount from the customer
-        Service currentService = customer.getCurrentService();
+        //Service currentService = customer.getCurrentService();
         int paymentAmount = currentService.getServicePrice();
         // get also the expenses of the barber shop for the service
-        int expenses = currentService.getExspenesFromService();
+        //int expenses = currentService.getExspenesFromService();
 
         // update the total balance of the cash register
         _totalBalance -= paymentAmount;
         // update the total expenses of the cash register,
         // we add the expenses to the total expenses because we are refounding the customer
-        _totalExpenses += expenses;
+        //_totalExpenses += expenses;
 
-        // notify the user of the cash register that a payment has been made successfully
-        System.out.println("Refound of " + paymentAmount + " has been made successfully for " + customer.getName());
-        // thank the customer for the payment
-        System.out.println("Thanks " + customer.getName() + "and see you again soon!");
+       
     }
 
     
