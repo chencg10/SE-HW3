@@ -316,7 +316,7 @@ public class CustomerPageGUI implements ActionListener {
 
             // Create a JScrollPane and add the JList to it
             JScrollPane scrollPane = new JScrollPane(ServicesList);
-            scrollPane.setPreferredSize(new Dimension(250, 300));
+            scrollPane.setPreferredSize(new Dimension(350, 300));
 
             // Show the JOptionPane with the JScrollPane as the message and get the user's choice
             int choice = JOptionPane.showOptionDialog(this._frame, scrollPane,
@@ -391,6 +391,14 @@ public class CustomerPageGUI implements ActionListener {
                 // get the customer object from the barber shop customers list
                 Customer customerToEdit = this._barberShop.getCustomerByName(name);
 
+                // check if the customer exsits in the barber shop customers list
+                if (customerToEdit == null) {
+                    // create a pop-up window to notify the user that the customer does not exist
+                    JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
+                            "Edit Customer", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 // ask for the customer detail to edit
                 // Declare instance variables
                 JList<String> ServicesList;
@@ -402,10 +410,10 @@ public class CustomerPageGUI implements ActionListener {
 
                 // Create a JScrollPane and add the JList to it
                 JScrollPane scrollPane = new JScrollPane(ServicesList);
-                scrollPane.setPreferredSize(new Dimension(250, 300));
+                scrollPane.setPreferredSize(new Dimension(350, 200));
 
                 // Show the JOptionPane with the JScrollPane as the message and get the user's choice
-                int choice = JOptionPane.showOptionDialog(this._frame, scrollPane,
+                JOptionPane.showOptionDialog(this._frame, scrollPane,
                         "Choose what you want to edit:",
                         JOptionPane.DEFAULT_OPTION,
                         JOptionPane.PLAIN_MESSAGE,
@@ -420,103 +428,150 @@ public class CustomerPageGUI implements ActionListener {
                 // ----------------------------Name:
                 if (selectedService.equals("Name"))
                 {
-                    // create a pop-up window to ask for the customer's name
-                    String newName = JOptionPane.showInputDialog(this._frame, "Enter the customer's new name:",
-                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
-                    // check if the name exists in the barber shop customers list
-                    if (!this._barberShop.isCustomerExists(newName)) {
-                        // create a pop-up window to notify the user that the customer does not exist
-                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
-                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
-                        return;
+
+                    //validate the name
+                    while (true)
+                    {
+                        // create a pop-up window to ask for the customer's name
+                        String newName = JOptionPane.showInputDialog(this._frame, "Enter the customer's new name:",
+                                "Edit Customer", JOptionPane.PLAIN_MESSAGE);
+
+                        // check if the name is valid
+                        if (this.isValidName(newName)) {
+                            // update the customer's name
+                            customerToEdit.setName(newName);
+                            break;
+                        } else
+                            JOptionPane.showMessageDialog(this._frame, "Invalid name, please try again.",
+                                    "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
-                    // get the customer object from the barber shop customers list
-                    customerToEdit = this._barberShop.getCustomerByName(newName);
 
-                    // change the customer's name
-                    customerToEdit.setName(newName);
-
-                    // check
-                    System.out.println(this._barberShop.getCustomersList());
+//                    // check
+//                    System.out.println(this._barberShop.getCustomersList());
                 }
                 // ----------------------Phone Number:
                 else if (selectedService.equals("Phone Number"))
                 {
-                    // create a pop-up window to ask for the customer's name
-                    String newPhoneNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new phone number:",
-                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
+                    //validate the phone number
+                    while (true)
+                    {
+                        // create a pop-up window to ask for the customer's name
+                        String newPhoneNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new phone number:",
+                                "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
-                    // get the customer object from the barber shop customers list
-                    customerToEdit = this._barberShop.getCustomerByPhoneNum(newPhoneNumber);
 
-                    // check if the name exists in the barber shop customers list
-                    if (customerToEdit == null) {
-                        // create a pop-up window to notify the user that the customer does not exist
-                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
-                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
-                        return;
+                        if (this.isValidPhoneNumber(newPhoneNumber)) {
+                            // change the customer's phone number
+                            customerToEdit.setPhone(newPhoneNumber);
+                            break;
+                        } else
+                            JOptionPane.showMessageDialog(this._frame, "Invalid phone number, please try again.",
+                                    "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
 
-                    // change the customer's phone number
-                    customerToEdit.setPhone(newPhoneNumber);
-
-                    // check
-                    System.out.println(this._barberShop.getCustomersList());
+//                    // check
+//                    System.out.println(this._barberShop.getCustomersList());
                 }
                 // ------------------------Credit Card Number:
                 else if (selectedService.equals("Credit Card Number")) {
+                    //validate the card number
+                    while (true)
+                    {
+                        // create a pop-up window to ask for the customer's card num
+                        String newCardNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new credit card number:",
+                                "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
-                    // create a pop-up window to ask for the customer's card num
-                    String newCardNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new credit card number:",
-                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
-
-                    // get the customer object from the barber shop customers list
-                    customerToEdit = this._barberShop.getCustomerByCreditCard(newCardNumber);
-                    // check if the name exists in the barber shop customers list
-                    if (customerToEdit == null) {
-                        // create a pop-up window to notify the user that the customer does not exist
-                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
-                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
-                        return;
+                        // check if the card number is valid
+                        if (this.isValidCreditCard(newCardNumber)) {
+                            // change the customer's phone number
+                            customerToEdit.getCreditCard().setCardNumber(newCardNumber);
+                            break;
+                        } else
+                            JOptionPane.showMessageDialog(this._frame, "Invalid card number, please try again.",
+                                    "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
-
-                    // change the customer's phone number
-                    customerToEdit.getCreditCard().setCardNumber(newCardNumber);
-
-                    // check
-                    System.out.println(this._barberShop.getCustomersList());
+//                    // check
+//                    System.out.println(this._barberShop.getCustomersList());
                 }
+
                 // ---------------------------CVV
                 else if (selectedService.equals("CVV Number")) {
+                    //validate the cvv
+                    while (true) {
+                        // create a pop-up window to ask for the customer's cvv
+                        String newCVV = JOptionPane.showInputDialog(this._frame, "Enter the customer's new CVV number:",
+                                "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
-                    // create a pop-up window to ask for the customer's cvv
-                    String newCVV = JOptionPane.showInputDialog(this._frame, "Enter the customer's new CVV number:",
-                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
-
-                    // get the customer object from the barber shop customers list
-                    customerToEdit = this._barberShop.getCustomerByCVV(newCVV);
-                    // check if the name exists in the barber shop customers list
-                    if (customerToEdit == null) {
-                        // create a pop-up window to notify the user that the customer does not exist
-                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
-                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
-                        return;
+                        // check if the cvv is valid
+                        if (this.isValidCvv(newCVV)) {
+                            // change customers credit card cvv
+                            customerToEdit.getCreditCard().setCvv(newCVV);
+                            break;
+                        } else
+                            JOptionPane.showMessageDialog(this._frame, "Invalid CVV number, please try again.",
+                                    "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 // ---------------------------Service
                 else if (selectedService.equals("Service")) {
 
-                    // create a pop-up window to ask for the customer's name
+                    // Retrieve the list of services names from the barber shop
+                    String[] servicesNames = this._barberShop.getServicesNames();
+                    // append a string to the end of each service name
+                    // Create a new array with a larger size
+                    String[] servicesNamesWithNone = new String[servicesNames.length + 1];
 
-                    // Notify the user that the customer was added successfully
-                    JOptionPane.showMessageDialog(this._frame, "Customer was added successfully.",
-                            "Add Customer", JOptionPane.INFORMATION_MESSAGE);
-                    // check
-                    System.out.println(this._barberShop.getCustomersList());
+                    // Copy elements from the original array to the new array
+                    System.arraycopy(servicesNames, 0, servicesNamesWithNone, 0, servicesNames.length);
+
+                    // Append the new string to the end of the new array
+                    servicesNamesWithNone[servicesNamesWithNone.length - 1] = "None";
+
+                    // Create a JList with the array of strings as the data
+                    ServicesList = new JList<>(servicesNamesWithNone);
+
+                    // Create a JScrollPane and add the JList to it
+                    scrollPane = new JScrollPane(ServicesList);
+                    scrollPane.setPreferredSize(new Dimension(250, 300));
+
+                    // Show the JOptionPane with the JScrollPane as the message and get the user's choice
+                    JOptionPane.showOptionDialog(this._frame, scrollPane,
+                            "Choose the services for the customer:",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            null);
+
+                    // get the user's choice
+                    selectedService = ServicesList.getSelectedValue();
+
+                    // Check the user's choice
+                    // if the user chose "None", do nothing
+                    if (selectedService.equals("None"))
+                    {
+                        // set the customer's service to null
+                        customerToEdit.set_currService(null);
+                    }
+                    // else, add the services to the customer
+                    else {
+                        // get the service object from the barber shop services list
+                        Service serviceToAdd = this._barberShop.getServiceByName(selectedService);
+
+                        // add the service to the customer
+                        customerToEdit.set_currService(serviceToAdd);
+                    }
                 }
-
-
-
+                // Notify the user that the customer was edited successfully
+                JOptionPane.showMessageDialog(this._frame, "Customer was edited successfully.",
+                        "Edit Customer", JOptionPane.INFORMATION_MESSAGE);
+                // check
+                System.out.println(this._barberShop.getCustomersList());
+            }
+            // if the customer was not found, notify the user
+            else {
+                JOptionPane.showMessageDialog(this._frame, "Customer was not found.",
+                        "Edit Customer", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
