@@ -183,7 +183,6 @@ public class BarberShopHomePageGUI implements ActionListener {
         this._ServicesMenuButton.addActionListener(this);
     }
 
-
     private void setCalendarMenuButton() {
         this._CalendarMenuButton = new JButton("Calendar Menu");
         this._CalendarMenuButton.setFont(new Font("MV Boli", Font.BOLD, 30));

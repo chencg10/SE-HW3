@@ -205,7 +205,7 @@ public class Customer
 	public String toString()
 	{
 		String strToReturn =
-				"\n~~~Customer details~~~" +
+				"\nCustomer details: " +
 				"\nName: " + this._name +
 				"\nPhone number: " + this._phoneNumber +
 				"\n" + this._customerCreditCard.toString();
@@ -217,7 +217,7 @@ public class Customer
 			strToReturn += "\nGender: Female";
 		}
 
-		return strToReturn + "\n~~~~~~~~~~~~~~~~~~~~~";
+		return strToReturn;
 	}
 
 //	// test

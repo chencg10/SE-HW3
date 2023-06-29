@@ -64,9 +64,9 @@ public class CustomerPageGUI implements ActionListener {
         this.setAddCustomerButton();
         this.setRemoveCustomerButton();
         this.setEditCustomerButton();
-//        this.setShowCustomerButton();
-//        this.setShowAllCustomersButton();
-//        this.setSortCustomersButton();
+        this.setShowCustomerButton();
+        this.setShowAllCustomersButton();
+        this.setSortCustomersButton();
 
 
 
@@ -85,8 +85,6 @@ public class CustomerPageGUI implements ActionListener {
 
     }
 
-
-
     private void setAddCustomerButton() {
         this._addCustomerButton.setFont(new Font("MV Boli", Font.BOLD, 25));
         this._addCustomerButton.setForeground(Color.white);
@@ -95,7 +93,7 @@ public class CustomerPageGUI implements ActionListener {
         this._addCustomerButton.setBorderPainted(false);
         this._addCustomerButton.setFocusable(true);
         // set button position
-        this._addCustomerButton.setBounds(340, 400, 450, 50);
+        this._addCustomerButton.setBounds(340, 200, 450, 50);
         // set the button's listener
         this._addCustomerButton.addActionListener(this);
         // add the button to the panel
@@ -110,7 +108,7 @@ public class CustomerPageGUI implements ActionListener {
         this._removeCustomerButton.setBorderPainted(false);
         this._removeCustomerButton.setFocusable(true);
         // set button position
-        this._removeCustomerButton.setBounds(340, 470, 500, 50);
+        this._removeCustomerButton.setBounds(340, 270, 500, 50);
         // set the button's listener
         this._removeCustomerButton.addActionListener(this);
         // add the button to the panel
@@ -125,11 +123,56 @@ public class CustomerPageGUI implements ActionListener {
         this._editCustomerButton.setBorderPainted(false);
         this._editCustomerButton.setFocusable(true);
         // set button position
-        this._editCustomerButton.setBounds(340, 540, 500, 50);
+        this._editCustomerButton.setBounds(340, 340, 500, 50);
         // set the button's listener
         this._editCustomerButton.addActionListener(this);
         // add the button to the panel
         this._panel.add(this._editCustomerButton);
+    }
+
+    private void setShowCustomerButton() {
+        this._showCustomerButton.setFont(new Font("MV Boli", Font.BOLD, 25));
+        this._showCustomerButton.setForeground(Color.white);
+        this._showCustomerButton.setBackground(Color.white);
+        this._showCustomerButton.setOpaque(false);
+        this._showCustomerButton.setBorderPainted(false);
+        this._showCustomerButton.setFocusable(true);
+        // set button position
+        this._showCustomerButton.setBounds(340, 410, 450, 50);
+        // set the button's listener
+        this._showCustomerButton.addActionListener(this);
+        // add the button to the panel
+        this._panel.add(this._showCustomerButton);
+    }
+
+    private void setShowAllCustomersButton() {
+        this._showAllCustomersButton.setFont(new Font("MV Boli", Font.BOLD, 25));
+        this._showAllCustomersButton.setForeground(Color.white);
+        this._showAllCustomersButton.setBackground(Color.white);
+        this._showAllCustomersButton.setOpaque(false);
+        this._showAllCustomersButton.setBorderPainted(false);
+        this._showAllCustomersButton.setFocusable(true);
+        // set button position
+        this._showAllCustomersButton.setBounds(340, 480, 450, 50);
+        // set the button's listener
+        this._showAllCustomersButton.addActionListener(this);
+        // add the button to the panel
+        this._panel.add(this._showAllCustomersButton);
+    }
+
+    private void setSortCustomersButton() {
+        this._sortCustomersButton.setFont(new Font("MV Boli", Font.BOLD, 25));
+        this._sortCustomersButton.setForeground(Color.white);
+        this._sortCustomersButton.setBackground(Color.white);
+        this._sortCustomersButton.setOpaque(false);
+        this._sortCustomersButton.setBorderPainted(false);
+        this._sortCustomersButton.setFocusable(true);
+        // set button position
+        this._sortCustomersButton.setBounds(340, 550, 550, 50);
+        // set the button's listener
+        this._sortCustomersButton.addActionListener(this);
+        // add the button to the panel
+        this._panel.add(this._sortCustomersButton);
     }
 
 
@@ -166,6 +209,10 @@ public class CustomerPageGUI implements ActionListener {
         {
             isSpace = true;
         }
+        // check if the name allready exist in the system
+        else if (this._barberShop.getCustomerByName(name) != null) {
+            return false;
+        }
         //return true only if the name contains only letters
         return name.matches("[a-zA-Z\\s]+") && !isSpace;
     }
@@ -173,7 +220,16 @@ public class CustomerPageGUI implements ActionListener {
     //this function is used to check if the phone number of the customer contain only letters
     private boolean isValidPhoneNumber(String phoneNumber)
     {
-        return phoneNumber.matches("\\d+") && phoneNumber.length()==10;
+        if (phoneNumber.matches("\\d+") && phoneNumber.length()==10) {
+            //iterate over the customers list and check if the phone number allready exist in the system
+            for (Customer customer : this._barberShop.getCustomersList()) {
+                if (customer.getPhoneNumber().equals(phoneNumber)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+       return false;
     }
 
     private boolean isValidCvv(String cvv)
@@ -208,7 +264,7 @@ public class CustomerPageGUI implements ActionListener {
             this._frame.dispose();
             new BarberShopHomePageGUI(this._barberShop);
         }
-
+        //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._addCustomerButton) {
             // each input will be checked for validity, and it will be asked again if it is invalid
             String name;
@@ -229,7 +285,7 @@ public class CustomerPageGUI implements ActionListener {
                 }
                 else {
                     // create a pop-up window to notify the user that the name is invalid
-                    JOptionPane.showMessageDialog(this._frame, "Invalid name, please try again: ",
+                    JOptionPane.showMessageDialog(this._frame, "Invalid/Taken name, please try again: ",
                             "Add Customer", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -245,7 +301,7 @@ public class CustomerPageGUI implements ActionListener {
                 }
                 else {
                     // create a pop-up window to notify the user that the phone number is invalid
-                    JOptionPane.showMessageDialog(this._frame, "Invalid phone number, please try again: ",
+                    JOptionPane.showMessageDialog(this._frame, "Invalid/Taken phone number, please try again: ",
                             "Add Customer", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -353,7 +409,7 @@ public class CustomerPageGUI implements ActionListener {
             System.out.println(this._barberShop.getCustomersList());
         }
 
-
+        //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._removeCustomerButton) {
             // create a pop-up window to ask for the customer's name
             String name = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
@@ -377,7 +433,7 @@ public class CustomerPageGUI implements ActionListener {
             // check
             System.out.println(this._barberShop.getCustomersList());
         }
-
+        //--------------------------------------------------------------------------------------------------------------
         // edit customer details:
         else if (e.getSource() == this._editCustomerButton)
         {
@@ -517,13 +573,12 @@ public class CustomerPageGUI implements ActionListener {
 
                     // Retrieve the list of services names from the barber shop
                     String[] servicesNames = this._barberShop.getServicesNames();
+
                     // append a string to the end of each service name
                     // Create a new array with a larger size
                     String[] servicesNamesWithNone = new String[servicesNames.length + 1];
-
                     // Copy elements from the original array to the new array
                     System.arraycopy(servicesNames, 0, servicesNamesWithNone, 0, servicesNames.length);
-
                     // Append the new string to the end of the new array
                     servicesNamesWithNone[servicesNamesWithNone.length - 1] = "None";
 
@@ -572,6 +627,60 @@ public class CustomerPageGUI implements ActionListener {
             else {
                 JOptionPane.showMessageDialog(this._frame, "Customer was not found.",
                         "Edit Customer", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------------
+        else if (e.getSource() == this._showCustomerButton)
+        {
+            //get the customer's name
+            String customerName = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
+                    "Show Customer", JOptionPane.PLAIN_MESSAGE);
+            // check if the customer exists
+            Customer customerToShow = this._barberShop.getCustomerByName(customerName);
+            if (customerToShow != null) {
+                // display the customer's details
+                JOptionPane.showMessageDialog(this._frame, customerToShow.toString(),
+                        "Show Customer", JOptionPane.INFORMATION_MESSAGE);
+            }
+            // if the customer was not found, notify the user
+            else {
+                JOptionPane.showMessageDialog(this._frame, "Customer was not found.",
+                        "Show Customer", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------------
+        else if (e.getSource() == this._showAllCustomersButton) {
+            if (this._barberShop.getCustomersList().size() != 0) {
+                // iterate over customers list and call each customer toString method to build a string
+                String allCustomers = "";
+                for (Customer customer : this._barberShop.getCustomersList()) {
+                    allCustomers += customer.toString() + "\n ------------------------ \n";
+                }
+
+                // display all customers
+                JOptionPane.showMessageDialog(this._frame, allCustomers,
+                        "Show All Customers", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                // notify the user that the list is empty
+                JOptionPane.showMessageDialog(this._frame, "Customers list is empty.",
+                        "Show All Customers", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------------
+        else if (e.getSource() == this._sortCustomersButton) {
+            // sort the customers list by lexicographic order
+            int result = this._barberShop.sortByName();
+            // check result flag
+            if (result == 0) {
+                // notify the user that the list was sorted
+                JOptionPane.showMessageDialog(this._frame, "Customers list was sorted successfully.",
+                        "Sort Customers", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                // notify the user that the list was already sorted
+                JOptionPane.showMessageDialog(this._frame, "Customers list is empty.",
+                        "Sort Customers", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
