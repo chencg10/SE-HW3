@@ -396,7 +396,7 @@ public class CustomerPageGUI implements ActionListener {
             // else, add the services to the customer
             else {
                 // search for the service in the barber shop services list
-                Service service = this._barberShop.getServiceByName(servicesNamesWithNone[choice]);
+                Service service = this._barberShop.getServiceByName(selectedService);
                 // create a new customer with the services
                 CreditCard creditCard = new CreditCard(creditCardNumber, creditCardCVV);
                 this._barberShop.addCustomer(new Customer(name, phoneNumber, creditCard, gender, service));
