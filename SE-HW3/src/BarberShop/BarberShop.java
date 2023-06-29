@@ -116,6 +116,17 @@ public class BarberShop {
 		        System.out.println("Customer not found in the customers list. Please try again.");
 		    }
 	}
+
+
+	// Search for a treatment in the treatments list by name
+	public Service getServiceByName(String name) {
+		for (int i = 0; i < this._servicesList.size(); i++) {
+			if (this._servicesList.get(i).getServiceName().equalsIgnoreCase(name)) {
+				return this._servicesList.get(i);
+			}
+		}
+		return null;
+	}
 	
 	//Setters and Getters:
 	public Calander getCalendar() {return this._calendar;}
