@@ -63,7 +63,7 @@ public class CustomerPageGUI implements ActionListener {
         // Set functionality buttons
         this.setAddCustomerButton();
         this.setRemoveCustomerButton();
-//        this.setEditCustomerButton();
+        this.setEditCustomerButton();
 //        this.setShowCustomerButton();
 //        this.setShowAllCustomersButton();
 //        this.setSortCustomersButton();
@@ -84,6 +84,8 @@ public class CustomerPageGUI implements ActionListener {
         this._frame.setVisible(true);
 
     }
+
+
 
     private void setAddCustomerButton() {
         this._addCustomerButton.setFont(new Font("MV Boli", Font.BOLD, 25));
@@ -113,6 +115,21 @@ public class CustomerPageGUI implements ActionListener {
         this._removeCustomerButton.addActionListener(this);
         // add the button to the panel
         this._panel.add(this._removeCustomerButton);
+    }
+
+    private void setEditCustomerButton() {
+        this._editCustomerButton.setFont(new Font("MV Boli", Font.BOLD, 25));
+        this._editCustomerButton.setForeground(Color.white);
+        this._editCustomerButton.setBackground(Color.white);
+        this._editCustomerButton.setOpaque(false);
+        this._editCustomerButton.setBorderPainted(false);
+        this._editCustomerButton.setFocusable(true);
+        // set button position
+        this._editCustomerButton.setBounds(340, 540, 500, 50);
+        // set the button's listener
+        this._editCustomerButton.addActionListener(this);
+        // add the button to the panel
+        this._panel.add(this._editCustomerButton);
     }
 
 
@@ -359,6 +376,93 @@ public class CustomerPageGUI implements ActionListener {
 
             // check
             System.out.println(this._barberShop.getCustomersList());
+        }
+
+        // edit customer details:
+        else if (e.getSource() == this._editCustomerButton)
+        {
+            // create a pop-up window to ask for the customer's name
+            String name = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
+                    "Edit Customer", JOptionPane.PLAIN_MESSAGE);
+
+            // check if the name exists in the barber shop customers list
+            if(this._barberShop.isCustomerExists(name))
+            {
+                // get the customer object from the barber shop customers list
+                Customer customerToEdit = this._barberShop.getCustomerByName(name);
+
+                // ask for the customer detail to edit
+                // Declare instance variables
+                JList<String> ServicesList;
+
+                String[] CustomerDetails = {"Name", "Phone Number", "Credit Card Number", "CVV Number", "Gender", "Service"};
+
+                // Create a JList with the array of strings as the data
+                ServicesList = new JList<>(CustomerDetails);
+
+                // Create a JScrollPane and add the JList to it
+                JScrollPane scrollPane = new JScrollPane(ServicesList);
+                scrollPane.setPreferredSize(new Dimension(250, 300));
+
+                // Show the JOptionPane with the JScrollPane as the message and get the user's choice
+                int choice = JOptionPane.showOptionDialog(this._frame, scrollPane,
+                        "Choose what you want to edit:",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null);
+
+                // get the user's choice
+                String selectedService = ServicesList.getSelectedValue();
+
+                // Check the user's choice
+                // Name:
+                if (selectedService.equals("Name"))
+                {
+                    // create a pop-up window to ask for the customer's name
+                    String newName = JOptionPane.showInputDialog(this._frame, "Enter the customer's new name:",
+                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
+                    // check if the name exists in the barber shop customers list
+                    if (!this._barberShop.isCustomerExists(newName)) {
+                        // create a pop-up window to notify the user that the customer does not exist
+                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
+                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    // get the customer object from the barber shop customers list
+                    customerToEdit = this._barberShop.getCustomerByName(newName);
+
+                    // change the customer's name
+                    customerToEdit.setName(newName);
+
+                    // check
+                    System.out.println(this._barberShop.getCustomersList());
+                }
+                // Phone Number:
+                else if (selectedService.equals("Phone Number"))
+                {
+                    // create a pop-up window to ask for the customer's name
+                    String newPhoneNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new phone number:",
+                            "Edit Customer", JOptionPane.PLAIN_MESSAGE);
+                    // check if the name exists in the barber shop customers list
+                    if (!this._barberShop.isCustomerExists(newPhoneNumber)) {
+                        // create a pop-up window to notify the user that the customer does not exist
+                        JOptionPane.showMessageDialog(this._frame, "Customer does not exist, please try again.",
+                                "Edit Customer", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    // get the customer object from the barber shop customers list
+                    customerToEdit = this._barberShop.getCustomerByName(newPhoneNumber);
+
+                    // change the customer's phone number
+                    customerToEdit.setPhoneNumber(newPhoneNumber);
+
+                    // check
+                    System.out.println(this._barberShop.getCustomersList());
+                }
+
+            }
         }
     }
 }
