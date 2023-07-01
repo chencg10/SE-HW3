@@ -312,18 +312,21 @@ public class CustomerPageGUI implements ActionListener {
                 if (this.isValidCreditCard(creditCardNumber)) {
                     // credit card number is valid, moving to the next input
                     // Now, CVV
-                    creditCardCVV = JOptionPane.showInputDialog(this._frame, "Enter the customer's CVV:",
-                            "Add Customer", JOptionPane.PLAIN_MESSAGE);
-                    // check if the CVV is valid
-                    if (this.isValidCvv(creditCardCVV)) {
-                        // CVV is valid, moving to the next input
-                        break;
+                    while (true) {
+                        creditCardCVV = JOptionPane.showInputDialog(this._frame, "Enter the customer's CVV:",
+                                "Add Customer", JOptionPane.PLAIN_MESSAGE);
+                        // check if the CVV is valid
+                        if (this.isValidCvv(creditCardCVV)) {
+                            // CVV is valid, moving to the next input
+                            break;
+                        } else {
+                            // create a pop-up window to notify the user that the CVV is invalid
+                            JOptionPane.showMessageDialog(this._frame, "Invalid CVV, please try again: ",
+                                    "Add Customer", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                    else {
-                        // create a pop-up window to notify the user that the CVV is invalid
-                        JOptionPane.showMessageDialog(this._frame, "Invalid CVV, please try again: ",
-                                "Add Customer", JOptionPane.ERROR_MESSAGE);
-                    }
+                    // if CVV is also valid, moving to the next input
+                    break;
                 }
                 else {
                     // create a pop-up window to notify the user that the credit card number is invalid
@@ -336,18 +339,26 @@ public class CustomerPageGUI implements ActionListener {
                 // get the customer's gender
                 genderStr = JOptionPane.showInputDialog(this._frame, "Please enter your gender: " +
                         "\n(1 - for male, 0 for female)", "Add Customer", JOptionPane.PLAIN_MESSAGE);
-                //convert gender to int
-                gender = Integer.parseInt(genderStr);
                 // validate the gender type
-                if (this.isValidGender(gender)) {
-                    // gender is valid
-                    break;
+                if (genderStr.equals("1") || genderStr.equals("0")) {
+                    //convert gender to int
+                    gender = Integer.parseInt(genderStr);
+                    // validate the gender type
+                    if (this.isValidGender(gender)) {
+                        // gender is valid
+                        break;
+                    } else {
+                        // create a pop-up window to notify the user that the CVV is invalid
+                        JOptionPane.showMessageDialog(this._frame, "Invalid gender, please try again",
+                                "Add Customer", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else {
                     // create a pop-up window to notify the user that the CVV is invalid
                     JOptionPane.showMessageDialog(this._frame, "Invalid gender, please try again",
                             "Add Customer", JOptionPane.ERROR_MESSAGE);
                 }
+
             }
 
             // Declare instance variables
@@ -445,6 +456,13 @@ public class CustomerPageGUI implements ActionListener {
         // edit customer details:
         else if (e.getSource() == this._editCustomerButton)
         {
+            // First, check if there are customers in the barber shop
+            if (this._barberShop.getCustomersList().size() == 0) {
+                // create a pop-up window to notify the user that there are no customers
+                JOptionPane.showMessageDialog(this._frame, "There are no customers in the barber shop to edit.",
+                        "Edit Customer", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             // create a pop-up window to ask for the customer's name
             String name = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
                     "Edit Customer", JOptionPane.PLAIN_MESSAGE);
@@ -520,7 +538,8 @@ public class CustomerPageGUI implements ActionListener {
                     while (true)
                     {
                         // create a pop-up window to ask for the customer's name
-                        String newPhoneNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new phone number:",
+                        String newPhoneNumber = JOptionPane.showInputDialog(this._frame,
+                                "Enter the customer's new phone number:",
                                 "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
 
@@ -529,7 +548,8 @@ public class CustomerPageGUI implements ActionListener {
                             customerToEdit.setPhone(newPhoneNumber);
                             break;
                         } else
-                            JOptionPane.showMessageDialog(this._frame, "Invalid phone number, please try again.",
+                            JOptionPane.showMessageDialog(this._frame,
+                                    "Invalid phone number, please try again.",
                                     "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
 
@@ -542,7 +562,8 @@ public class CustomerPageGUI implements ActionListener {
                     while (true)
                     {
                         // create a pop-up window to ask for the customer's card num
-                        String newCardNumber = JOptionPane.showInputDialog(this._frame, "Enter the customer's new credit card number:",
+                        String newCardNumber = JOptionPane.showInputDialog(this._frame,
+                                "Enter the customer's new credit card number:",
                                 "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
                         // check if the card number is valid
@@ -551,7 +572,8 @@ public class CustomerPageGUI implements ActionListener {
                             customerToEdit.getCreditCard().setCardNumber(newCardNumber);
                             break;
                         } else
-                            JOptionPane.showMessageDialog(this._frame, "Invalid card number, please try again.",
+                            JOptionPane.showMessageDialog(this._frame,
+                                    "Invalid card number, please try again.",
                                     "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
 //                    // check
@@ -563,7 +585,8 @@ public class CustomerPageGUI implements ActionListener {
                     //validate the cvv
                     while (true) {
                         // create a pop-up window to ask for the customer's cvv
-                        String newCVV = JOptionPane.showInputDialog(this._frame, "Enter the customer's new CVV number:",
+                        String newCVV = JOptionPane.showInputDialog(this._frame,
+                                "Enter the customer's new CVV number:",
                                 "Edit Customer", JOptionPane.PLAIN_MESSAGE);
 
                         // check if the cvv is valid
@@ -572,7 +595,8 @@ public class CustomerPageGUI implements ActionListener {
                             customerToEdit.getCreditCard().setCvv(newCVV);
                             break;
                         } else
-                            JOptionPane.showMessageDialog(this._frame, "Invalid CVV number, please try again.",
+                            JOptionPane.showMessageDialog(this._frame,
+                                    "Invalid CVV number, please try again.",
                                     "Edit Customer", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -640,6 +664,12 @@ public class CustomerPageGUI implements ActionListener {
         //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._showCustomerButton)
         {
+            // check if there are customers in the list
+            if (this._barberShop.getCustomersList().size() == 0) {
+                JOptionPane.showMessageDialog(this._frame, "There are no customers in the list.",
+                        "Show Customer", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             //get the customer's name
             String customerName = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
                     "Show Customer", JOptionPane.PLAIN_MESSAGE);
