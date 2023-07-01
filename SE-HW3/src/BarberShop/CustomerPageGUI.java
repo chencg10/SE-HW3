@@ -68,8 +68,6 @@ public class CustomerPageGUI implements ActionListener {
         this.setShowAllCustomersButton();
         this.setSortCustomersButton();
 
-
-
         // Add the title to the panel
         this._panel.add(titleLabel);
         // Add the back button to the panel
@@ -411,6 +409,13 @@ public class CustomerPageGUI implements ActionListener {
 
         //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._removeCustomerButton) {
+            // First, check if there are customers in the barber shop
+            if (this._barberShop.getCustomersList().size() == 0) {
+                // create a pop-up window to notify the user that there are no customers
+                JOptionPane.showMessageDialog(this._frame, "There are no customers in the barber shop to remove.",
+                        "Remove Customer", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             // create a pop-up window to ask for the customer's name
             String name = JOptionPane.showInputDialog(this._frame, "Enter the customer's name:",
                     "Remove Customer", JOptionPane.PLAIN_MESSAGE);
@@ -425,6 +430,9 @@ public class CustomerPageGUI implements ActionListener {
             Customer customerToRemove = this._barberShop.getCustomerByName(name);
             // remove the customer from the barber shop
             this._barberShop.removeCustomer(customerToRemove);
+
+            // remove customer appointments from the diary
+            this._barberShop.getCalendar().deleteEventByCustomer(customerToRemove);
 
             //notify the user that the customer was removed
             JOptionPane.showMessageDialog(this._frame, "Customer was removed successfully.",

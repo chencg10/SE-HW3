@@ -70,19 +70,25 @@ public class Calander
             	{
                 	//down casting to WomenEvent:
             		WomenEvent otherMeeting = (WomenEvent) event;
-                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
+                	System.out.println("Event details: [date=" + otherMeeting.getDate()
+                            + ", event time=" + otherMeeting.getEventTime()
+                            + ", customer=" + otherMeeting.getCustomer().toString()
+                            + ", is curly=" + otherMeeting.getIsCurly() + "]");
             	}
             	else if (event instanceof ManEvent) 
             	{
                 	//down casting to ManEvent:
             		ManEvent otherMeeting = (ManEvent) event;
-                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
+                	System.out.println("Event details: [date="
+                            + otherMeeting.getDate() + ", event time="
+                            + otherMeeting.getEventTime()
+                            + ", customer=" + otherMeeting.getCustomer().toString()
+                            + ", has beard=" + otherMeeting.getHasBeard() + "]");
             	}
 
             }
         }
     }
-
 
     //this function prints the events that has the customer by order in dates:
     public void printMeetingsByContact(Customer customer) 
@@ -159,6 +165,53 @@ public class Calander
         		ManEvent otherMeeting = (ManEvent) event;
         		System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
         	}
+        }
+    }
+
+
+    // a function that returns all events in the diary of a specific customer
+    public Event[] getEventByCustomer(Customer customer) {
+        int counter = 0;
+        //for loop on all the events in the diary:
+        for (Event event : this._diaryevents) {
+            //checking if otherEvent is in the type of WomenEvent
+            //and if the event has this customer
+            if (((WomenEvent) event).getCustomer().getName() == customer.getName()) {
+                counter++;
+            } else if (((ManEvent) event).getCustomer().getName() == customer.getName()) {
+                counter++;
+            }
+        }
+
+        Event[] events = new Event[counter];
+        int index = 0;
+        //for loop on all the events in the diary:
+        for (Event event : this._diaryevents) {
+            //checking if otherEvent is in the type of WomenEvent
+            //and if the event has this customer
+            if (((WomenEvent) event).getCustomer().getName() == customer.getName()) {
+                events[index] = event;
+                index++;
+            } else if (((ManEvent) event).getCustomer().getName() == customer.getName()) {
+                events[index] = event;
+                index++;
+            }
+        }
+
+        return events;
+    }
+
+    // a function that deletes all events in the diary of a specific customer
+    public void deleteEventByCustomer(Customer customer) {
+        //for loop on all the events in the diary:
+        for (int i = 0; i < this._diaryevents.size(); i++) {
+            //checking if otherEvent is in the type of WomenEvent
+            //and if the event has this customer
+            if (((WomenEvent) this._diaryevents.get(i)).getCustomer().getName() == customer.getName()) {
+                this._diaryevents.remove(i);
+            } else if (((ManEvent) this._diaryevents.get(i)).getCustomer().getName() == customer.getName()) {
+                this._diaryevents.remove(i);
+            }
         }
     }
     
