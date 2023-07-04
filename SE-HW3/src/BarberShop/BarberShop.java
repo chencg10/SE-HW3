@@ -209,49 +209,50 @@ public class BarberShop {
 	}
 
 
-//    @Override
+	// Sort the linked list by name:
+	public int sortByName()
+	{
+		// We will sort the linked list using bubble sort
+
+		//check if the list is empty:
+		if ( this._customersList.size() == 0)
+		{
+			// The list is empty -1
+			return -1;
+		}
+		// check if the list has only one element:
+		else if (this._customersList.size() == 1) {
+			System.out.println("The list has only one element, nothing to sort");
+			return 0;
+		}
+		else
+		{
+			//sort using lambda expression
+			this._customersList.sort((Customer c1, Customer c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+			return 0;
+		}
+	}
+
+//	@Override
 //	public String toString() {
-//		String s = new String();
-//		s= "Calendar:" +Calendar.toString() +"CashRegister" +CashRegister.toString();
+//		String s = "";
+//		s = "Calendar: " + this._calendar.toString() + " Cash Register: " + this._cashRegister.toString() +"\n"
+//				+"The customers of the BarberShop:";
+//
 //		for( int i=0; i<= this._customersList.size(); i++) {
-//			this._customersList<Customer>[i] =
+//			Customer customer = this._customersList.get(i); // Accessing the customer at index i
 //
-//
-//		}
-//	}
-//
-	
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		// check our code
-//		CreditCard cc = new CreditCard("1234567891011121", "123");
-//		Service s = new Service("Haircut", 50, 10);
-//		Customer c = new Customer("Chen", "0502003245", cc, 1, s);
-//		// create barber shop
-//		BarberShop bs = new BarberShop();
-//		// add customer to barber shop
-//		bs.addCustomer(c);
-//		Date date = new Date("2023/06/27");
-//		// add event to calendar
-//		bs.getCalendar().addEvent(new ManEvent(date, 15, c, true));
-//
-//		// add service to barber shop
-//		bs.addService(s);
-//		// add another service to barber shop
-//		bs.addService(new Service("Beard Trim", 20, 5));
-//		// add another service to barber shop
-//		bs.addService(new Service("Haircut and Beard Trim", 60, 15));
-//
-//
-//		System.out.println(bs.getCustomersList().get(0).toString());
-//		System.out.println(bs.getCustomersList().get(0).getCreditCard().toString());
-//
-//
-//		for (int i = 0; i < bs.getServiceList().size(); i++) {
-//			System.out.println(bs.getServiceList().get(i).toString());
+//			// Example: Appending customer information to the string
+//			s += " Customer " + i + ": " + customer.toString();
 //		}
 //
-//		bs.getCalendar().printAllEvents();
-//		System.out.println(bs.getCashRegister().toString());
+//		s+= "\n The services of the BarberShop:";
+//
+//		for( int i=0; i<= this._servicesList.size(); i++) {
+//			Service service = this._servicesList.get(i); // Accessing the customer at index i
+//
+//			// Example: Appending customer information to the string
+//			s += " Service " + i + ": " + service.toString();
+//		}
 //	}
 }
