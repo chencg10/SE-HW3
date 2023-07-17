@@ -239,12 +239,10 @@ public class BarberShopHomePageGUI implements ActionListener {
         }
         else if (this._CalendarMenuButton == e.getSource())
         {
-            //TODO: HADAS - NEED TO IMPLEMENT
+            // close the current window
+            this._frame.dispose();
             // create new calendar menu gui object
-            //CalendarPageGUI calendarMenuGUI = new CalendarPageGUI(this._barberShop);
-
-            // for checking
-            System.out.println("Calendar Menu Button Pressed");
+            CalendarPageGUI calendarMenuGUI = new CalendarPageGUI(this._barberShop);
         }
     }
 

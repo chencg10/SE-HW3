@@ -27,12 +27,16 @@ public class Calander
     	this._diaryevents.add(event);
         System.out.println("Event added successfully!");
     }
+    public int getCalendarSize()
+    {
+    	return _diaryevents.size();
+    }
     
     //this function deletes an event in the index 'index' in the diary:
     public void deleteEvent(int index) 
     {
     	//checking if the index is legal:
-        if (index >= 0 && index < this._diaryevents.size()) 
+        if (index >= 0 && index <= this._diaryevents.size())
         {
         	this._diaryevents.remove(index - 1);
             System.out.println("Event deleted successfully.");
@@ -40,6 +44,39 @@ public class Calander
         else 
         {
             System.out.println("Invalid event index.");
+        }
+    }
+    
+    public void deleteEventByCustomer(Customer customer)
+    {
+    	int j = 0;
+    	for (Event event : this._diaryevents) 
+        {
+            if(customer.getGender()==0)
+            {
+                //checking if otherEvent is in the type of WomenEvent
+                //and if the event has this customer
+                if (event.getCustomer().getName() == customer.getName())
+                {
+                    //down casting to WomenEvent:
+                    //WomenEvent otherMeeting = (WomenEvent) event;
+                    this.deleteEvent(j + 1);
+                }
+            }
+
+            if(customer.getGender()==1) {
+                if (event.getCustomer().getName().equals(customer.getName())) {
+                    //down casting to WomenEvent:
+                    //ManEvent otherMeeting = (ManEvent) event;
+                    this.deleteEvent(j + 1);
+                }
+            }
+            // check  if diary is empty
+            if(this._diaryevents.size() == 0)
+            {
+                break;
+            }
+            j++;
         }
     }
 
@@ -70,28 +107,62 @@ public class Calander
             	{
                 	//down casting to WomenEvent:
             		WomenEvent otherMeeting = (WomenEvent) event;
-                	System.out.println("Event details: [date=" + otherMeeting.getDate()
-                            + ", event time=" + otherMeeting.getEventTime()
-                            + ", customer=" + otherMeeting.getCustomer().toString()
-                            + ", is curly=" + otherMeeting.getIsCurly() + "]");
+                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
             	}
             	else if (event instanceof ManEvent) 
             	{
                 	//down casting to ManEvent:
             		ManEvent otherMeeting = (ManEvent) event;
-                	System.out.println("Event details: [date="
-                            + otherMeeting.getDate() + ", event time="
-                            + otherMeeting.getEventTime()
-                            + ", customer=" + otherMeeting.getCustomer().toString()
-                            + ", has beard=" + otherMeeting.getHasBeard() + "]");
+                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
             	}
 
             }
         }
     }
+    
+    public String EventsByDate(Date date) 
+    {
+    	String str ="";
+    	str += "Events on " + date.toString() + ":";
+        //for loop on all the events in the diary:
+        for (Event event : this._diaryevents) 
+        {
+        	Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(date);
+
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(event.getDate());
+
+            int year1 = cal1.get(Calendar.YEAR);
+            int month1 = cal1.get(Calendar.MONTH);
+            int day1 = cal1.get(Calendar.DAY_OF_MONTH);
+
+            int year2 = cal2.get(Calendar.YEAR);
+            int month2 = cal2.get(Calendar.MONTH);
+            int day2 = cal2.get(Calendar.DAY_OF_MONTH);
+
+            if(year1 == year2 && month1 == month2 && day1 == day2)
+            {
+            	if (event instanceof WomenEvent) 
+            	{
+                	//down casting to WomenEvent:
+            		WomenEvent otherMeeting = (WomenEvent) event;
+            		str += "Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]";
+            	}
+            	else if (event instanceof ManEvent) 
+            	{
+                	//down casting to ManEvent:
+            		ManEvent otherMeeting = (ManEvent) event;
+            		str += "Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]";
+            	}
+
+            }
+        }
+        return str;
+    }
 
     //this function prints the events that has the customer by order in dates:
-    public void printMeetingsByContact(Customer customer) 
+    public void printMeetingsByCustomer(Customer customer) 
     {
         System.out.println("Meetings with " + customer.toString());
       //for loop on all the events in the diary:
@@ -114,6 +185,38 @@ public class Calander
         }
     }
 
+  //this function prints the events that has the customer by order in dates:
+    public String EventsByCustomer(Customer customer) 
+    {
+    	String str ="";
+    	str += "Meetings with " + customer.getName();
+      //for loop on all the events in the diary:
+        for (Event event : this._diaryevents) 
+        {	
+        	//checking if otherEvent is in the type of WomenEvent 
+        	//and if the event has this customer
+            if(customer.getGender() == 0)
+            {
+                if (event.getCustomer().getName() == customer.getName())
+                {
+                    //down casting to WomenEvent:
+                    WomenEvent otherMeeting = (WomenEvent) event;
+                    str += "\nEvent details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]";
+                }
+            }
+            else if(customer.getGender() == 1)
+            {
+              if( event.getCustomer().getName() == customer.getName())
+                {
+                //down casting to WomenEvent:
+                ManEvent otherMeeting = (ManEvent) event;
+                str += "\nEvent details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]";
+                }
+            }
+
+        }
+        return str;
+    }
     
     //this function is for checking if there is a collision between two events.
     //if there is, it deletes the latest event
@@ -165,53 +268,6 @@ public class Calander
         		ManEvent otherMeeting = (ManEvent) event;
         		System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
         	}
-        }
-    }
-
-
-    // a function that returns all events in the diary of a specific customer
-    public Event[] getEventByCustomer(Customer customer) {
-        int counter = 0;
-        //for loop on all the events in the diary:
-        for (Event event : this._diaryevents) {
-            //checking if otherEvent is in the type of WomenEvent
-            //and if the event has this customer
-            if (((WomenEvent) event).getCustomer().getName() == customer.getName()) {
-                counter++;
-            } else if (((ManEvent) event).getCustomer().getName() == customer.getName()) {
-                counter++;
-            }
-        }
-
-        Event[] events = new Event[counter];
-        int index = 0;
-        //for loop on all the events in the diary:
-        for (Event event : this._diaryevents) {
-            //checking if otherEvent is in the type of WomenEvent
-            //and if the event has this customer
-            if (((WomenEvent) event).getCustomer().getName() == customer.getName()) {
-                events[index] = event;
-                index++;
-            } else if (((ManEvent) event).getCustomer().getName() == customer.getName()) {
-                events[index] = event;
-                index++;
-            }
-        }
-
-        return events;
-    }
-
-    // a function that deletes all events in the diary of a specific customer
-    public void deleteEventByCustomer(Customer customer) {
-        //for loop on all the events in the diary:
-        for (int i = 0; i < this._diaryevents.size(); i++) {
-            //checking if otherEvent is in the type of WomenEvent
-            //and if the event has this customer
-            if (((WomenEvent) this._diaryevents.get(i)).getCustomer().getName() == customer.getName()) {
-                this._diaryevents.remove(i);
-            } else if (((ManEvent) this._diaryevents.get(i)).getCustomer().getName() == customer.getName()) {
-                this._diaryevents.remove(i);
-            }
         }
     }
     
