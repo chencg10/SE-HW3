@@ -1,4 +1,3 @@
-package BarberShop;
 
 public class Service {
 	private
@@ -27,6 +26,8 @@ public class Service {
 		this._exspenesFromService = other.getExspenesFromService();
 	}
 	
+	
+	
 	//Setters and Getters:
 	public String getServiceName () {return this._serviceName;}
 	
@@ -50,6 +51,19 @@ public class Service {
 		return s;
 	}
 	
+	//this function is used to check if the name of the customer contain only letters
+	private boolean isValidServiceName(String serviceName)
+	{
+		int comperName=serviceName.compareTo(" ");
+		boolean isSpace = false;
+		if(comperName==0)
+		{
+			isSpace = true;
+		}
+		//return true only if the name contains only letters
+		return serviceName.matches("[a-zA-Z\\s]+") && !isSpace;
+	}
+	
 	public void setService (Service other) {
 		this._serviceName= other.getServiceName();
 		this._servicePrice= other.getServicePrice();
@@ -58,7 +72,7 @@ public class Service {
 	
     @Override
 	public String toString() {
-		return "The Service is: " + this.getServiceName() +"\nThe Price of the service: " + this.getServicePrice();
+		return "The Service is: " + this.getServiceName() +"\nThe Price of the service: " + this.getServicePrice() +"\nThe Expenses of the service: " + this.getExspenesFromService();
 	}
 	
 	public static void main(String[] args) {
