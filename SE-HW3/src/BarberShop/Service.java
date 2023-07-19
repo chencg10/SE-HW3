@@ -1,4 +1,4 @@
-
+package BarberShop;
 public class Service {
 	private
 		String _serviceName;
