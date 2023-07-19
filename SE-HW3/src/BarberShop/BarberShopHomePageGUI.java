@@ -230,12 +230,10 @@ public class BarberShopHomePageGUI implements ActionListener {
         }
         else if (this._ServicesMenuButton == e.getSource())
         {
-            //TODO: SHOAM - NEED TO IMPLEMENT
+            // close the current window
+            this._frame.dispose();
             // create new services menu gui object
-            //ServicePageGUI servicesMenuGUI = new ServicePageGUI(this._barberShop);
-
-            // for checking
-            System.out.println("Services Menu Button Pressed");
+            ServicePageGUI servicesMenuGUI = new ServicePageGUI(this._barberShop);
         }
         else if (this._CalendarMenuButton == e.getSource())
         {

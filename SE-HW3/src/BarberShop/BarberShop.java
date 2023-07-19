@@ -233,6 +233,54 @@ public class BarberShop {
 		}
 	}
 
+
+	public boolean isServiceExists(String name) {
+		for (int i = 0; i < this._servicesList.size(); i++) {
+			if (this._servicesList.get(i).getServiceName().equalsIgnoreCase(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	//Delete service from customers list if the service has deleted fron GUI
+	public void deleteServiceFromCustomerList (Service serviceToDelete){
+
+		for( int i=0; i<this._customersList.size(); i++) {
+			if ((this._customersList.get(i).getCurrentService()).equals(serviceToDelete)) {
+				this._customersList.get(i).set_currService(null);
+			}
+		}
+	}
+
+
+
+	// Sort the linked list by name:
+	public int sortByServiceName()
+	{
+		// We will sort the linked list using bubble sort
+
+		//check if the list is empty:
+		if ( this._servicesList.size() == 0)
+		{
+			// The list is empty -1
+			return -1;
+		}
+		// check if the list has only one element:
+		else if (this._servicesList.size() == 1) {
+			System.out.println("The list has only one element, nothing to sort");
+			return 0;
+		}
+		else
+		{
+			//sort using lambda expression
+			this._servicesList.sort((Service c1, Service c2) -> c1.getServiceName().compareToIgnoreCase(c2.getServiceName()));
+			return 0;
+		}
+	}
+
+
 //	@Override
 //	public String toString() {
 //		String s = "";

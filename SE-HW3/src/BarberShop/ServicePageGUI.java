@@ -43,7 +43,7 @@ public class ServicePageGUI implements ActionListener {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                 ImageIcon imageIcon = new ImageIcon("src/BarberBackround.jpeg");
+                 ImageIcon imageIcon = new ImageIcon("src/BarberShop/BarberBackround.jpeg");
                  Image image = imageIcon.getImage();
                  g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
