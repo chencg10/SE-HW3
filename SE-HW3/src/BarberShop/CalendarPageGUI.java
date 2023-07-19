@@ -57,7 +57,7 @@ public class CalendarPageGUI implements ActionListener
         titleLabel.setFont(new Font("Brush Script", Font.BOLD, 60));
 
         // Set the title's color
-        titleLabel.setForeground(new Color(255, 255, 255));
+        titleLabel.setForeground(new Color(0, 0, 0));
 
         // Set the title's position
         titleLabel.setBounds(295, 0, 500, 100);
@@ -93,13 +93,13 @@ public class CalendarPageGUI implements ActionListener
 
     private void setAddEventButton() {
         this._addEventButton.setFont(new Font("MV Boli", Font.BOLD, 25));
-        this._addEventButton.setForeground(Color.white);
-        this._addEventButton.setBackground(Color.white);
+        this._addEventButton.setForeground(Color.black);
+        this._addEventButton.setBackground(Color.black);
         this._addEventButton.setOpaque(false);
         this._addEventButton.setBorderPainted(false);
         this._addEventButton.setFocusable(true);
         // set button position
-        this._addEventButton.setBounds(340, 200, 450, 50);
+        this._addEventButton.setBounds(50, 100, 450, 50);
         // set the button's listener
         this._addEventButton.addActionListener(this);
         // add the button to the panel
@@ -108,13 +108,13 @@ public class CalendarPageGUI implements ActionListener
 
     private void setRemoveEventButton() {
         this._removeEventButton.setFont(new Font("MV Boli", Font.BOLD, 25));
-        this._removeEventButton.setForeground(Color.white);
-        this._removeEventButton.setBackground(Color.white);
+        this._removeEventButton.setForeground(Color.black);
+        this._removeEventButton.setBackground(Color.black);
         this._removeEventButton.setOpaque(false);
         this._removeEventButton.setBorderPainted(false);
         this._removeEventButton.setFocusable(true);
         // set button position
-        this._removeEventButton.setBounds(340, 270, 500, 50);
+        this._removeEventButton.setBounds(50, 170, 500, 50);
         // set the button's listener
         this._removeEventButton.addActionListener(this);
         // add the button to the panel
@@ -123,13 +123,13 @@ public class CalendarPageGUI implements ActionListener
 
     private void setShowAllEventsByCustomerButton() {
         this._showAllEventsByCustomerButton.setFont(new Font("MV Boli", Font.BOLD, 25));
-        this._showAllEventsByCustomerButton.setForeground(Color.white);
-        this._showAllEventsByCustomerButton.setBackground(Color.white);
+        this._showAllEventsByCustomerButton.setForeground(Color.black);
+        this._showAllEventsByCustomerButton.setBackground(Color.black);
         this._showAllEventsByCustomerButton.setOpaque(false);
         this._showAllEventsByCustomerButton.setBorderPainted(false);
         this._showAllEventsByCustomerButton.setFocusable(true);
         // set button position
-        this._showAllEventsByCustomerButton.setBounds(340, 410, 450, 50);
+        this._showAllEventsByCustomerButton.setBounds(50, 240, 450, 50);
         // set the button's listener
         this._showAllEventsByCustomerButton.addActionListener(this);
         // add the button to the panel
@@ -138,13 +138,13 @@ public class CalendarPageGUI implements ActionListener
 
     private void setShowAllEventsButton() {
         this._showAllEventsButton.setFont(new Font("MV Boli", Font.BOLD, 25));
-        this._showAllEventsButton.setForeground(Color.white);
-        this._showAllEventsButton.setBackground(Color.white);
+        this._showAllEventsButton.setForeground(Color.black);
+        this._showAllEventsButton.setBackground(Color.black);
         this._showAllEventsButton.setOpaque(false);
         this._showAllEventsButton.setBorderPainted(false);
         this._showAllEventsButton.setFocusable(true);
         // set button position
-        this._showAllEventsButton.setBounds(340, 480, 450, 50);
+        this._showAllEventsButton.setBounds(50, 310, 450, 50);
         // set the button's listener
         this._showAllEventsButton.addActionListener(this);
         // add the button to the panel
@@ -153,13 +153,13 @@ public class CalendarPageGUI implements ActionListener
 
     private void setShowAllEventsByDateButton() {
         this._showAllEventsByDateButton.setFont(new Font("MV Boli", Font.BOLD, 25));
-        this._showAllEventsByDateButton.setForeground(Color.white);
-        this._showAllEventsByDateButton.setBackground(Color.white);
+        this._showAllEventsByDateButton.setForeground(Color.black);
+        this._showAllEventsByDateButton.setBackground(Color.black);
         this._showAllEventsByDateButton.setOpaque(false);
         this._showAllEventsByDateButton.setBorderPainted(false);
         this._showAllEventsByDateButton.setFocusable(true);
         // set button position
-        this._showAllEventsByDateButton.setBounds(340, 550, 550, 50);
+        this._showAllEventsByDateButton.setBounds(50, 380, 450, 50);
         // set the button's listener
         this._showAllEventsByDateButton.addActionListener(this);
         // add the button to the panel
@@ -180,8 +180,8 @@ public class CalendarPageGUI implements ActionListener
     private void setBackButton() {
         this._backButton = new JButton("Back");
         this._backButton.setFont(new Font("MV Boli", Font.BOLD, 30));
-        this._backButton.setForeground(Color.white);
-        this._backButton.setBackground(Color.white);
+        this._backButton.setForeground(Color.black);
+        this._backButton.setBackground(Color.black);
         this._backButton.setOpaque(false);
         this._backButton.setBorderPainted(false);
         this._backButton.setFocusable(true);
