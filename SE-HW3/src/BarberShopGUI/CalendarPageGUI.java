@@ -1,11 +1,15 @@
-package BarberShop;
+package BarberShopGUI;
+import BarberShopComponents.Customer;
+import BarberShop.BarberShop;
+import BarberShopComponents.Event;
+import BarberShopComponents.WomenEvent;
+import BarberShopComponents.ManEvent;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -316,12 +320,12 @@ public class CalendarPageGUI implements ActionListener
                 if (isCurlyStr.equals("1")) 
                 {
                 	isCurly = true;
-                    //break; 
+                    // if flag is true, then make meeting duration plus 15 minutes longer because curly hair takes more time
+                    eventTime += 15;
                 }
                 else if(isCurlyStr.equals("0"))
                 {
                 	isCurly = false;
-                    //break; 
                 }
 
                 else 
@@ -334,7 +338,7 @@ public class CalendarPageGUI implements ActionListener
             	
             	this._barberShop.getCalendar().addEvent(new WomenEvent(date, eventTime,customer , isCurly));
             }
-            //if its a man
+            //if it's a man
             else if(customer.getGender() == 1)
             {
                 hasBeardStr = JOptionPane.showInputDialog(this._frame, "Please enter if the customer has beard: " +
@@ -343,6 +347,8 @@ public class CalendarPageGUI implements ActionListener
                 if (hasBeardStr.equals("1"))
                 {
                     hasBeard = true;
+                    // if flag is true, then make meeting duration plus 10 minutes longer because beard takes more time
+                    eventTime += 10;
                     //break;
                 }
                 else if(hasBeardStr.equals("0"))
@@ -368,10 +374,6 @@ public class CalendarPageGUI implements ActionListener
 	                "Add Event", JOptionPane.INFORMATION_MESSAGE);
             	
 	        }
-
-
-
-        
         //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._removeEventButton) 
         {
@@ -410,8 +412,6 @@ public class CalendarPageGUI implements ActionListener
             JOptionPane.showMessageDialog(this._frame, "The event was removed successfully.",
                     "Remove Customer", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-        
 
         //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._showAllEventsButton) 
@@ -437,7 +437,6 @@ public class CalendarPageGUI implements ActionListener
             }
         }
 
-        
       //--------------------------------------------------------------------------------------------------------------
         else if (e.getSource() == this._showAllEventsByCustomerButton) 
         {
@@ -472,7 +471,6 @@ public class CalendarPageGUI implements ActionListener
                         "Show Events By Customer", JOptionPane.INFORMATION_MESSAGE);
             }
 
-            
             else
             {
                 // notify the user that the list is empty
@@ -511,7 +509,6 @@ public class CalendarPageGUI implements ActionListener
                 JOptionPane.showMessageDialog(this._frame, allEvents,
                         "Show Events By Date", JOptionPane.INFORMATION_MESSAGE);
             }
-
             
             else
             {
@@ -519,11 +516,6 @@ public class CalendarPageGUI implements ActionListener
                 JOptionPane.showMessageDialog(this._frame, "The calendar is empty.",
                         "Show Events By Date", JOptionPane.ERROR_MESSAGE);
             }
-        }  
-        
+        }
     }
-    
-    
-    
-    
 }

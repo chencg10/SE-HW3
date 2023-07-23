@@ -1,28 +1,20 @@
 package BarberShop;
+import BarberShopComponents.Calander;
+import BarberShopComponents.CashRegister;
+import BarberShopComponents.Customer;
+import BarberShopComponents.Service;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.Iterator;
-
-
-
-//------------------------ Team 8 ------------------------
-//Members:
-//1. 208955732 - Chen Cohen Gershon
-//2. 208010785 - Shoham Galili
-//3. 213486764 - Hadas Yosef-Zada
-//4. 207812421 - Avidan Menashe
-//---------------------------------------------------------
 
 public class BarberShop {
 
-	private
-		Calander _calendar;
-		CashRegister _cashRegister;
-		ArrayList <Customer> _customersList;
-		ArrayList <Service> _servicesList;
+	private Calander _calendar;
+	private CashRegister _cashRegister;
+	private ArrayList <Customer> _customersList;
+	private ArrayList <Service> _servicesList;
 		
 		
 	//Default constructor:
@@ -69,13 +61,13 @@ public class BarberShop {
 	}
 	
 	//The func add a new service to the Barbershop:
-	void addService(Service service) {
+	public void addService(Service service) {
 		this._servicesList.add(service);
 		
 	}
 	
 	//The func remove a service from the Barbershop:
-	void removeService(Service service) {
+	public void removeService(Service service) {
 		int servicesSize = this._servicesList.size();
 		
 		if( servicesSize == 0) {
@@ -100,7 +92,7 @@ public class BarberShop {
 	}
 	
 	//The func remove a customer to the customer List:
-	void removeCustomer(Customer customer) {
+	public void removeCustomer(Customer customer) {
 		int customersSize = this._customersList.size();
 		
 		if( customersSize == 0) {
@@ -248,7 +240,7 @@ public class BarberShop {
 	public void deleteServiceFromCustomerList (Service serviceToDelete){
 
 		for( int i=0; i<this._customersList.size(); i++) {
-			if ((this._customersList.get(i).getCurrentService()).equals(serviceToDelete)) {
+			if ((this._customersList.get(i).getCurrentService().getServiceName()).equals(serviceToDelete.getServiceName())) {
 				this._customersList.get(i).set_currService(null);
 			}
 		}

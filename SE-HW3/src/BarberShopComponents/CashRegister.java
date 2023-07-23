@@ -1,4 +1,4 @@
-package BarberShop;
+package BarberShopComponents;
 
 public class CashRegister {
 

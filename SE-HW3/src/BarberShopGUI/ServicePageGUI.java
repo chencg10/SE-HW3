@@ -1,4 +1,7 @@
-package BarberShop;
+package BarberShopGUI;
+import BarberShop.BarberShop;
+import BarberShopComponents.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -356,9 +359,6 @@ public class ServicePageGUI implements ActionListener {
                 //notify the user that the customer was removed
                 JOptionPane.showMessageDialog(this._frame, "The Service was removed successfully.",
                         "Remove Service", JOptionPane.INFORMATION_MESSAGE);
-
-                // check
-                System.out.println(this._barberShop.getServiceList());
         	}
         	else {
         		 // notify the user that the list is empty

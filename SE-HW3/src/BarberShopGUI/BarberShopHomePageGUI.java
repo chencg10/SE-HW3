@@ -1,4 +1,6 @@
-package BarberShop;
+package BarberShopGUI;
+import BarberShop.BarberShop;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

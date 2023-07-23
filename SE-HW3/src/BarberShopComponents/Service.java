@@ -1,4 +1,4 @@
-package BarberShop;
+package BarberShopComponents;
 public class Service {
 	private
 		String _serviceName;
@@ -72,7 +72,12 @@ public class Service {
 	
     @Override
 	public String toString() {
-		return "The Service is: " + this.getServiceName() +"\nThe Price of the service: " + this.getServicePrice() +"\nThe Expenses of the service: " + this.getExspenesFromService();
+		return "The Service is: " +
+				this.getServiceName() +
+				"\nThe Price of the service: " +
+				this.getServicePrice() +
+				"\nThe Expenses of the service: " +
+				this.getExspenesFromService();
 	}
 	
 	public static void main(String[] args) {

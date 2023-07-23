@@ -1,4 +1,8 @@
-package BarberShop;
+package BarberShopGUI;
+import BarberShop.BarberShop;
+import BarberShopComponents.*;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -198,9 +202,13 @@ public class CashRegisterPageGUI implements ActionListener {
 		{
         	//get the customer's name
     	   String CustomerName=JOptionPane.showInputDialog(this._frame, "Please enter the name of the customer", "Customer name", JOptionPane.PLAIN_MESSAGE);
-    	   //check if the customer name is exsit
+    	   //if the user press cancel
+			if(CustomerName==null) {
+				return;
+			}
+		   //check if the customer name exists
     	   Customer currCustomer=this._barberShop.getCustomerByName(CustomerName);
-    	   //customer doesn't exsit
+    	   //customer doesn't exists
     	   if(currCustomer==null)
     	   {
     		   JOptionPane.showMessageDialog(this._frame, "Sorry,the customer name doesn't exsit", "error-customer doesn't found",
@@ -219,7 +227,7 @@ public class CashRegisterPageGUI implements ActionListener {
     		   }
     		   else
     		   {
-    			   this._barberShop._cashRegister.addPayment(currCustomer);
+    			   this._barberShop.getCashRegister().addPayment(currCustomer);
     			   //get the price of the current service
     			   int paymentAmount=currService.getServicePrice();
     			   
@@ -235,7 +243,6 @@ public class CashRegisterPageGUI implements ActionListener {
     		       this._barberShop.getCustomerByName(CustomerName).set_currService(null);
     		   }
     	   }
-    	   
         }
 
 		else if (e.getSource() == this._incomeButton) {
@@ -246,8 +253,6 @@ public class CashRegisterPageGUI implements ActionListener {
 			JOptionPane.showMessageDialog(this._frame, "Your incomes are : " + incomes, "Your incomes",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
-
-		
 		  else if(e.getSource()==this._netProfitButton) {
 		  
 			  //get the net profit
@@ -258,20 +263,23 @@ public class CashRegisterPageGUI implements ActionListener {
 		    		 //show warnig message since the net profit is negative
 		    		JOptionPane.showMessageDialog(this._frame, "Be careful you are in  minus of : " +String.valueOf(netProfit), "net Profit", JOptionPane.WARNING_MESSAGE);
 		    	}
-		    	
 		    	else
 		    	{
 		    		//show the net profit
 		    		JOptionPane.showMessageDialog(this._frame, "Your net profit is : " +String.valueOf(netProfit), "net Profit", JOptionPane.INFORMATION_MESSAGE);
 		    	}
-			  
 		  }
 		
 		  else if (e.getSource()==this._refoundCustomerButton)
 		  {
 			//get the customer's name
 	    	   String CustomerName=JOptionPane.showInputDialog(this._frame, "Please enter the name of the customer", "Customer name", JOptionPane.PLAIN_MESSAGE);
-	    	   //check if the customer name is exsit
+	    	   if (CustomerName==null)
+	    	   {
+	    		   return;
+	    	   }
+
+			   //check if the customer name is exsit
 	    	   Customer currCustomer=this._barberShop.getCustomerByName(CustomerName);
 	    	   //customer doesn't exsit
 	    	   if(currCustomer==null)
@@ -336,19 +344,10 @@ public class CashRegisterPageGUI implements ActionListener {
 	    			   //tell to the customer that the refound successfully executed
 	    			   JOptionPane.showMessageDialog(this._frame, "Refound of " + paymentAmount + " has been made successfully for " +currCustomer,"refound successfully executed", JOptionPane.INFORMATION_MESSAGE);
 	                   
-	                   // thank the customer 
+	                   // thanks to the customer
 	    			   JOptionPane.showMessageDialog(this._frame,"Thanks " + currCustomer.getName() + " and see you again soon!","thank you", JOptionPane.INFORMATION_MESSAGE);
-	             
 	               }
-	               
-	               
-	    		   
-	    		   
 	    	   }
 		  }
-		  
-		
-
 	}
-
 }

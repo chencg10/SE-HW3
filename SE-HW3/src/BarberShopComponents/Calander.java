@@ -1,5 +1,4 @@
-package BarberShop;
-
+package BarberShopComponents;
 import java.util.Date; //using the Date library of java
 import java.util.List;
 import java.util.ArrayList;
@@ -103,13 +102,13 @@ public class Calander
 
             if(year1 == year2 && month1 == month2 && day1 == day2)
             {
-            	if (event instanceof WomenEvent) 
+            	if (event instanceof WomenEvent)
             	{
                 	//down casting to WomenEvent:
             		WomenEvent otherMeeting = (WomenEvent) event;
                 	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
             	}
-            	else if (event instanceof ManEvent) 
+            	else if (event instanceof ManEvent)
             	{
                 	//down casting to ManEvent:
             		ManEvent otherMeeting = (ManEvent) event;

@@ -1,6 +1,7 @@
-package BarberShop;// For using strings in Java
+package BarberShopComponents;// For using strings in Java
 import java.lang.String;
 import java.util.Scanner;
+
 public class CreditCard implements Payment
 {
 	private String _cardNumber;

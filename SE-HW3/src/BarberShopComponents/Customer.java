@@ -1,5 +1,6 @@
-package BarberShop;
+package BarberShopComponents;
 // For using strings in Java
+
 import java.lang.String;
 import java.util.Scanner;
 
@@ -216,6 +217,12 @@ public class Customer
 		} else {
 			strToReturn += "\nGender: Female";
 		}
+
+		// add service details
+		if (this._currService != null)
+			strToReturn += "\nCurrent Service: " + this._currService.getServiceName();
+		else
+			strToReturn += "\nCurrent Service: None";
 
 		return strToReturn;
 	}

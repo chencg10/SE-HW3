@@ -1,50 +1,49 @@
-package BarberShop;
+package BarberShopComponents;
 
 import java.util.Calendar;
 import java.util.Date; //using the Date library of java
 import java.lang.String; //using strings in Java
 
-
-public class WomenEvent extends Event
+public class ManEvent extends Event
 {
 	//this class is extends from Event class
 	
 	//define members
-	private boolean _isCurly;
+	private boolean _hasBeard;
 	
 	//constructor:
-    public WomenEvent(Date date, int eventTime, Customer customer , boolean isCurly) {
+    public ManEvent(Date date, int eventTime, Customer customer , boolean hasBeard) {
         super(date, eventTime,customer); //making 'this' to be an event by super()
-        this._isCurly = isCurly;
+        this._hasBeard = hasBeard;
     }
     
     //Copy Constructor
-    public WomenEvent(WomenEvent otherWomenEvent)
+    public ManEvent(ManEvent otherManEvent)
     {
     	//making 'this' to be an event by super()
-    	super(otherWomenEvent.getDate(), otherWomenEvent.getEventTime() , otherWomenEvent.getCustomer()); 
-    	this._isCurly = otherWomenEvent.getIsCurly();
+    	super(otherManEvent.getDate(), otherManEvent.getEventTime() , otherManEvent.getCustomer()); 
+    	this._hasBeard = otherManEvent.getHasBeard();
     }
     
     //get:
-    public boolean getIsCurly() 
+    public boolean getHasBeard() 
     {
-        return this._isCurly;
+        return this._hasBeard;
     }
     
     //set:
-    public void setIsCurly(boolean isCurly)
+    public void setHasBeard(boolean hasBeard)
     {
-    	this._isCurly = isCurly;
+    	this._hasBeard = hasBeard;
     }
     
     //this function is for checking if there is a collision between two events.
     @Override
     public boolean collidesWith(Event otherEvent) {
     	//checking if otherEvent is in the type of MeetingEvent
-        if (otherEvent instanceof WomenEvent) {
+        if (otherEvent instanceof ManEvent) {
         	//down casting to MeetingEvent:
-        	WomenEvent otherMeeting = (WomenEvent) otherEvent;
+        	ManEvent otherMeeting = (ManEvent) otherEvent;
             //check if the meetings is in the same time:
         	Calendar cal1 = Calendar.getInstance();
             cal1.setTime(otherMeeting.getDate());
@@ -68,8 +67,7 @@ public class WomenEvent extends Event
         	int eventTime2 = this.getEventTime();
         	if(year1 == year2 && month1 == month2 && day1 == day2 && hour1 == hour2)
         	{
-        		if(minutes1 == minutes2 || (minutes1<minutes2 && minutes2< (minutes1 + eventTime1)) ||
-                        (minutes2<minutes2 && minutes2< (minutes2 + eventTime2)))
+        		if(minutes1 == minutes2 || (minutes1<minutes2 && minutes2< (minutes1 + eventTime1)) || (minutes2<minutes2 && minutes2< (minutes2 + eventTime2)))
         		{
         			return true;
         		}
@@ -81,6 +79,7 @@ public class WomenEvent extends Event
     @Override
     public String toString() 
     {
-        return "Event details: [date=" + this.getDate() + ", event time=" + this.getEventTime() +", customer=" + this.getCustomer().toString() + ", is curly=" + this.getIsCurly() + "]";
+        return "Event details: [date=" + this.getDate() + ", event time=" + this.getEventTime() +", customer=" + this.getCustomer().toString()+ ", has beard=" + this.getHasBeard() + "]";
     }
+
 }
