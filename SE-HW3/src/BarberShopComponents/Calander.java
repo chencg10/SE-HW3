@@ -24,7 +24,7 @@ public class Calander
     public void addEvent(Event event) 
     {
     	this._diaryevents.add(event);
-        System.out.println("Event added successfully!");
+        //System.out.println("Event added successfully!");
     }
     public int getCalendarSize()
     {
@@ -38,12 +38,12 @@ public class Calander
         if (index >= 0 && index <= this._diaryevents.size())
         {
         	this._diaryevents.remove(index - 1);
-            System.out.println("Event deleted successfully.");
+            //System.out.println("Event deleted successfully.");
         } 
-        else 
-        {
-            System.out.println("Invalid event index.");
-        }
+//        else
+//        {
+//            System.out.println("Invalid event index.");
+//        }
     }
     
     public void deleteEventByCustomer(Customer customer)
@@ -106,13 +106,17 @@ public class Calander
             	{
                 	//down casting to WomenEvent:
             		WomenEvent otherMeeting = (WomenEvent) event;
-                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
+                	System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                            ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                            otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
             	}
             	else if (event instanceof ManEvent)
             	{
                 	//down casting to ManEvent:
             		ManEvent otherMeeting = (ManEvent) event;
-                	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
+                	System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                            ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                            otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
             	}
 
             }
@@ -146,13 +150,19 @@ public class Calander
             	{
                 	//down casting to WomenEvent:
             		WomenEvent otherMeeting = (WomenEvent) event;
-            		str += "Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]";
+            		str += "Event details: [date=" + otherMeeting.getDate() +
+                            ", event time=" + otherMeeting.getEventTime() +
+                            ", customer=" + otherMeeting.getCustomer().toString()+
+                            ", is curly=" + otherMeeting.getIsCurly() + "]";
             	}
             	else if (event instanceof ManEvent) 
             	{
                 	//down casting to ManEvent:
             		ManEvent otherMeeting = (ManEvent) event;
-            		str += "Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]";
+            		str += "Event details: [date=" + otherMeeting.getDate() +
+                            ", event time=" + otherMeeting.getEventTime() +
+                            ", customer=" + otherMeeting.getCustomer().toString()+
+                            ", has beard=" + otherMeeting.getHasBeard() + "]";
             	}
 
             }
@@ -173,13 +183,19 @@ public class Calander
             {
             	//down casting to WomenEvent:
             	WomenEvent otherMeeting = (WomenEvent) event;
-            	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
+            	System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                        ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                        otherMeeting.getCustomer().toString()+ ", is curly=" +
+                        otherMeeting.getIsCurly() + "]");
             }
             else if(((ManEvent) event).getCustomer().getName() == customer.getName()) 
             {
             	//down casting to WomenEvent:
             	ManEvent otherMeeting = (ManEvent) event;
-            	System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
+            	System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                        ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                        otherMeeting.getCustomer().toString()+ ", has beard=" +
+                        otherMeeting.getHasBeard() + "]");
             }
         }
     }
@@ -200,7 +216,10 @@ public class Calander
                 {
                     //down casting to WomenEvent:
                     WomenEvent otherMeeting = (WomenEvent) event;
-                    str += "\nEvent details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]";
+                    str += "\nEvent details: [date=" + otherMeeting.getDate() +
+                            ", event time=" + otherMeeting.getEventTime() +
+                            ", customer=" + otherMeeting.getCustomer().toString()+
+                            ", is curly=" + otherMeeting.getIsCurly() + "]";
                 }
             }
             else if(customer.getGender() == 1)
@@ -209,7 +228,10 @@ public class Calander
                 {
                 //down casting to WomenEvent:
                 ManEvent otherMeeting = (ManEvent) event;
-                str += "\nEvent details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]";
+                str += "\nEvent details: [date=" + otherMeeting.getDate() +
+                        ", event time=" + otherMeeting.getEventTime() +
+                        ", customer=" + otherMeeting.getCustomer().toString()+
+                        ", has beard=" + otherMeeting.getHasBeard() + "]";
                 }
             }
 
@@ -241,7 +263,6 @@ public class Calander
                 		this._diaryevents.remove(i);
                         System.out.println("Event at index " + i + " collided with event at index " + j + " and was deleted!");
                 	}
-                	
                 }
             }
         }
@@ -259,16 +280,18 @@ public class Calander
         	{
             	//down casting to WomenEvent:
         		WomenEvent otherMeeting = (WomenEvent) event;
-        		System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
+        		System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                        ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                        otherMeeting.getCustomer().toString()+ ", is curly=" + otherMeeting.getIsCurly() + "]");
         	}
         	else if (event instanceof ManEvent) 
         	{
             	//down casting to ManEvent:
         		ManEvent otherMeeting = (ManEvent) event;
-        		System.out.println("Event details: [date=" + otherMeeting.getDate() + ", event time=" + otherMeeting.getEventTime() +", customer=" + otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
+        		System.out.println("Event details: [date=" + otherMeeting.getDate() +
+                        ", event time=" + otherMeeting.getEventTime() +", customer=" +
+                        otherMeeting.getCustomer().toString()+ ", has beard=" + otherMeeting.getHasBeard() + "]");
         	}
         }
     }
-    
-
 }

@@ -246,8 +246,6 @@ public class BarberShop {
 		}
 	}
 
-
-
 	// Sort the linked list by name:
 	public int sortByServiceName()
 	{
@@ -271,28 +269,4 @@ public class BarberShop {
 			return 0;
 		}
 	}
-
-
-//	@Override
-//	public String toString() {
-//		String s = "";
-//		s = "Calendar: " + this._calendar.toString() + " Cash Register: " + this._cashRegister.toString() +"\n"
-//				+"The customers of the BarberShop:";
-//
-//		for( int i=0; i<= this._customersList.size(); i++) {
-//			Customer customer = this._customersList.get(i); // Accessing the customer at index i
-//
-//			// Example: Appending customer information to the string
-//			s += " Customer " + i + ": " + customer.toString();
-//		}
-//
-//		s+= "\n The services of the BarberShop:";
-//
-//		for( int i=0; i<= this._servicesList.size(); i++) {
-//			Service service = this._servicesList.get(i); // Accessing the customer at index i
-//
-//			// Example: Appending customer information to the string
-//			s += " Service " + i + ": " + service.toString();
-//		}
-//	}
 }

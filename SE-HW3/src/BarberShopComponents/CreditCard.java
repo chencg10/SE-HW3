@@ -75,7 +75,7 @@ public class CreditCard implements Payment
 		//if the cvv is illegal print error and ask for another cvv until we get legal cvv
 		else
 		{
-			 System.out.println("Invalid CVV. Please try again.");
+			 //System.out.println("Invalid CVV. Please try again.");
 			 Scanner scanner = new Scanner(System.in);
 			while(true)
 			{
@@ -86,10 +86,10 @@ public class CreditCard implements Payment
 						this._cvv = input;
 						break;
 				 }
-				 else
-				 {
-					 System.out.println("Invalid CVV. Please try again.");
-				 }
+//				 else
+//				 {
+//					 System.out.println("Invalid CVV. Please try again.");
+//				 }
 			}
 		}
 
@@ -100,21 +100,21 @@ public class CreditCard implements Payment
 
 		else
 		{
-			 System.out.println("Invalid credit number. Please try again.");
+			 //System.out.println("Invalid credit number. Please try again.");
 			 Scanner scanner = new Scanner(System.in);
 			while(true)
 			{
-				 System.out.print("Enter credit number : ");
+				 //System.out.print("Enter credit number : ");
 				 String input = scanner.nextLine();
 				 if (isValidCreditCard(input))
 				 {
 					 this._cardNumber = addHyphens(input);
 					 break;
 				 }
-				 else
-				 {
-					 System.out.println("Invalid credit number. Please try again.");
-				 }
+//				 else
+//				 {
+//					 System.out.println("Invalid credit number. Please try again.");
+//				 }
 			}
 		}
 	}

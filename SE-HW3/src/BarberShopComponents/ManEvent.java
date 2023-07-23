@@ -67,7 +67,9 @@ public class ManEvent extends Event
         	int eventTime2 = this.getEventTime();
         	if(year1 == year2 && month1 == month2 && day1 == day2 && hour1 == hour2)
         	{
-        		if(minutes1 == minutes2 || (minutes1<minutes2 && minutes2< (minutes1 + eventTime1)) || (minutes2<minutes2 && minutes2< (minutes2 + eventTime2)))
+        		if(minutes1 == minutes2 ||
+                        (minutes1<minutes2 && minutes2< (minutes1 + eventTime1)) ||
+                        (minutes2<minutes2 && minutes2< (minutes2 + eventTime2)))
         		{
         			return true;
         		}
@@ -79,7 +81,10 @@ public class ManEvent extends Event
     @Override
     public String toString() 
     {
-        return "Event details: [date=" + this.getDate() + ", event time=" + this.getEventTime() +", customer=" + this.getCustomer().toString()+ ", has beard=" + this.getHasBeard() + "]";
+        return "Event details: [date=" + this.getDate() +
+                ", event time=" + this.getEventTime() +
+                ", customer=" + this.getCustomer().toString()+
+                ", has beard=" + this.getHasBeard() + "]";
     }
 
 }

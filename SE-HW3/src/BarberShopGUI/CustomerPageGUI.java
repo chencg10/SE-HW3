@@ -416,7 +416,7 @@ public class CustomerPageGUI implements ActionListener {
             JOptionPane.showMessageDialog(this._frame, "Customer was added successfully.",
                     "Add Customer", JOptionPane.INFORMATION_MESSAGE);
            // check
-            System.out.println(this._barberShop.getCustomersList());
+           //System.out.println(this._barberShop.getCustomersList());
         }
 
         //--------------------------------------------------------------------------------------------------------------
@@ -451,7 +451,7 @@ public class CustomerPageGUI implements ActionListener {
                     "Remove Customer", JOptionPane.INFORMATION_MESSAGE);
 
             // check
-            System.out.println(this._barberShop.getCustomersList());
+            //System.out.println(this._barberShop.getCustomersList());
         }
         //--------------------------------------------------------------------------------------------------------------
         // edit customer details:
@@ -654,7 +654,7 @@ public class CustomerPageGUI implements ActionListener {
                 JOptionPane.showMessageDialog(this._frame, "Customer was edited successfully.",
                         "Edit Customer", JOptionPane.INFORMATION_MESSAGE);
                 // check
-                System.out.println(this._barberShop.getCustomersList());
+                //System.out.println(this._barberShop.getCustomersList());
             }
             // if the customer was not found, notify the user
             else {

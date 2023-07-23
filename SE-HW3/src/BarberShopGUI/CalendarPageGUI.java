@@ -197,13 +197,15 @@ public class CalendarPageGUI implements ActionListener
 
     public Date createDateFromUserInput(String userInput) throws ParseException 
     {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm"); // Define the date format according to your GUI
+        // Define the date format according to your GUI
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return dateFormat.parse(userInput);
     }
 
     public Date createDateFromUserInputNoHours(String userInput) throws ParseException
     {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Define the date format according to your GUI
+        // Define the date format according to your GUI
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.parse(userInput);
     }
     
@@ -236,7 +238,9 @@ public class CalendarPageGUI implements ActionListener
             while (true) 
             {
                 // create a pop-up window to ask for the event's details
-            	userInput = JOptionPane.showInputDialog(this._frame, "Enter the date in this format: dd/MM/yyyy HH:mm \n years lower then 2023 wont be excepted",
+            	userInput = JOptionPane.showInputDialog(this._frame,
+                        "Enter the date in this format: dd/MM/yyyy HH:mm " +
+                                "\n years lower then 2023 wont be excepted",
                         "Add Event", JOptionPane.PLAIN_MESSAGE);
                 // if user pressed cancel or closed the window
                 if (userInput == null)
@@ -248,7 +252,16 @@ public class CalendarPageGUI implements ActionListener
                 {
                     date = createDateFromUserInput(userInput);
                     //date is valid, moving to the next input
-                    if (date.getDay() > 0 && date.getDay() < 32 && date.getHours() >= 0 && date.getHours()<25 && date.getMinutes()>=0 && date.getMinutes()<60 && date.getMonth()>=0 && date.getMonth()<13 && date.getYear() >= 123)
+                    if (date.getDay() > 0 &&
+                            date.getDay() < 32 &&
+                            date.getHours() >= 0 &&
+                            date.getHours()<25 &&
+                            date.getMinutes()>=0 &&
+                            date.getMinutes()<60 &&
+                            date.getMonth()>=0 &&
+                            date.getMonth()<13 &&
+                            date.getYear() >= 123)
+                    //123 == 2023 - 1900
                     {
                         // eventTime is valid
                         break;
@@ -386,7 +399,8 @@ public class CalendarPageGUI implements ActionListener
                 return;
             }
             // create a pop-up window to ask for the customer's name
-            String name = JOptionPane.showInputDialog(this._frame, "Enter the customer's name you want to remove the events with him:",
+            String name = JOptionPane.showInputDialog(this._frame,
+                    "Enter the customer's name you want to remove the events with him:",
                     "Remove Event", JOptionPane.PLAIN_MESSAGE);
             if (name != null) {
                 // check if the name exists in the barber shop customers list

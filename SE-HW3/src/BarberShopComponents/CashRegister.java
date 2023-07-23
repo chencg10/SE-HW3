@@ -66,10 +66,6 @@ public class CashRegister {
        
     }
 
-    
-
-
-
     @Override
     public String toString() {
         // get the current date and time

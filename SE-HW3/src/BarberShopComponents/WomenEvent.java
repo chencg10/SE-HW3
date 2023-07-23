@@ -81,6 +81,12 @@ public class WomenEvent extends Event
     @Override
     public String toString() 
     {
-        return "Event details: [date=" + this.getDate() + ", event time=" + this.getEventTime() +", customer=" + this.getCustomer().toString() + ", is curly=" + this.getIsCurly() + "]";
+        return "Event details: [date=" +
+                this.getDate() +
+                ", event time=" +
+                this.getEventTime() +
+                ", customer=" +
+                this.getCustomer().toString() +
+                ", is curly=" + this.getIsCurly() + "]";
     }
 }

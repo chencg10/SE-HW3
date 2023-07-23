@@ -75,21 +75,21 @@ public class Customer
 		// if the name is illegal print an error and ask for the use to enter new name
 		else
 		{
-			 System.out.println("Invalid name. Please try again.");
+			 //System.out.println("Invalid name. Please try again.");
 			 Scanner scanner = new Scanner(System.in);
 			while(true)
 			{
-				 System.out.print("Enter the name of customer: ");
+				 //System.out.print("Enter the name of customer: ");
 				 String input = scanner.nextLine();
 				 if (isValidName(input))
 				 {
 						this._name = input;
 						break;
 				 }
-				 else
-				 {
-					 System.out.println("Invalid name. Please try again.");
-				 }
+//				 else
+//				 {
+//					 System.out.println("Invalid name. Please try again.");
+//				 }
 			}
 		}
 	}
@@ -104,21 +104,21 @@ public class Customer
 			// if the phone number is illegal print an error and ask for the use to enter new name
 			else
 			{
-				 System.out.println("Invalid phone number. Please try again.");
+				 //System.out.println("Invalid phone number. Please try again.");
 				 Scanner scanner = new Scanner(System.in);
 				while(true)
 				{
-					 System.out.print("Enter the phone number of customer: ");
+					 //System.out.print("Enter the phone number of customer: ");
 					 String input = scanner.nextLine();
 					 if (isValidName(input))
 					 {
 							this._phoneNumber = input;
 							break;
 					 }
-					 else
-					 {
-						 System.out.println("Invalid phone number. Please try again.");
-					 }
+//					 else
+//					 {
+//						 System.out.println("Invalid phone number. Please try again.");
+//					 }
 				}
 			}
 	}
@@ -146,7 +146,7 @@ public class Customer
 			Scanner scanner = new Scanner(System.in);
 			while (true)
 			{
-				System.out.println("Wrong gender, please try again :");
+				//System.out.println("Wrong gender, please try again :");
 				gender = scanner.nextInt();
 				if (gender == MALE || gender == FEMALE)
 				{
@@ -179,7 +179,7 @@ public class Customer
 			Scanner scanner = new Scanner(System.in);
 			while (true)
 			{
-				System.out.println("Wrong gender, please try again :");
+				//System.out.println("Wrong gender, please try again :");
 				gender = scanner.nextInt();
 				if (gender == MALE || gender == FEMALE)
 				{
