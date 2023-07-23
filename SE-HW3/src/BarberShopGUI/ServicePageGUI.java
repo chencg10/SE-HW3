@@ -276,6 +276,10 @@ public class ServicePageGUI implements ActionListener {
         		// get service's name:
         		serviceName = JOptionPane.showInputDialog(this._frame, "Enter the service's name:",
                         "Add Service", JOptionPane.PLAIN_MESSAGE);
+                //if user press cancel or close the window:
+                if (serviceName == null) {
+                    return;
+                }
                 // check if the name is valid
                 if (this.isValidName(serviceName)) {
                     // name is valid, moving to the next input
@@ -292,6 +296,10 @@ public class ServicePageGUI implements ActionListener {
         		//get service's price:
         		servicePrice = JOptionPane.showInputDialog(this._frame, "Enter the service's price:",
                         "Add Service", JOptionPane.PLAIN_MESSAGE);
+                //if user press cancel or close the window:
+                if (servicePrice == null) {
+                    return;
+                }
                 // check if the name is valid
                 if (this.isValidPrice(servicePrice)) {
                     // name is valid, moving to the next input
@@ -308,6 +316,10 @@ public class ServicePageGUI implements ActionListener {
         		//get service's expenses:
         		serviceExpenses = JOptionPane.showInputDialog(this._frame, "Enter the service's expenses:",
                         "Add Service", JOptionPane.PLAIN_MESSAGE);
+                //if user press cancel or close the window:
+                if (serviceExpenses == null) {
+                    return;
+                }
                 // check if the input expenses is valid
                 if (this.isValidPrice(serviceExpenses)) {
                     // name is valid, moving to the next input
@@ -338,6 +350,11 @@ public class ServicePageGUI implements ActionListener {
         		// create a pop-up window to ask for the service's name
                 String name = JOptionPane.showInputDialog(this._frame, "Enter the service's name:",
                         "Remove Service", JOptionPane.PLAIN_MESSAGE);
+
+                // check if the user pressed cancel or closed the window
+                if (name == null) {
+                    return;
+                }
                 
                 // check if the name exists in the barber shop services list
                 if (!this._barberShop.isServiceExists(name)) {
@@ -373,6 +390,10 @@ public class ServicePageGUI implements ActionListener {
         	//get the service's name
             String serviceName = JOptionPane.showInputDialog(this._frame, "Enter the service's name:",
                     "Show Service", JOptionPane.PLAIN_MESSAGE);
+            // check if the user pressed cancel or closed the window
+            if (serviceName == null) {
+                return;
+            }
             
             // check if the service exists
             Service serviceToShow = this._barberShop.getServiceByName(serviceName);
@@ -434,6 +455,10 @@ public class ServicePageGUI implements ActionListener {
             // create a pop-up window to ask for the customer's name
             String name = JOptionPane.showInputDialog(this._frame, "Enter the service's name:",
                     "Edit Service", JOptionPane.PLAIN_MESSAGE);
+            // check if the user pressed cancel or closed the window
+            if (name == null) {
+                return;
+            }
 
             // check if the name exists in the barber shop services list
             if(this._barberShop.isServiceExists(name))
@@ -560,7 +585,6 @@ public class ServicePageGUI implements ActionListener {
             JOptionPane.showMessageDialog(this._frame, "Service was editted successfully.",
                     "Edit Service", JOptionPane.INFORMATION_MESSAGE);
         }
-        
     }
 }  
         
